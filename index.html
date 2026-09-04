@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VileTech Informática — Assistência técnica em Lavras/MG</title>
+<meta name="description" content="Manutenção de notebook, montagem de PC, rede e Wi-Fi em Lavras/MG. Diagnóstico no mesmo dia e orçamento por escrito. R. Barão do Rio Branco, 211 — Centro.">
+<meta name="theme-color" content="#0B2239">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   TOKENS — copiados de design-system-viletech.html
+   ========================================================================== */
+:root{
+  --azul-placa:#0B2239;
+  --azul-fumaca:#123A5F;
+  --azul-sinal:#0F6BD4;
+  --vermelho-vile:#DE1F26;
+  --vermelho-forte:#B8151B;
+  --verde-whats:#0E7C41;
+  --verde-whats-brilho:#25D366;
+  --ambar:#F0A020;
+  --branco-bancada:#FFFFFF;
+  --cinza-antiestatico:#F1F4F8;
+  --grafite:#46586B;
+  --borda:#DCE3EC;
+  --borda-forte:#B9C6D6;
+  --desabilitado:#8697A8;
+
+  --fonte-titulo:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --fonte-corpo:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+
+  --t-h1:clamp(2.125rem,5.2vw,3.5rem);
+  --t-h2:clamp(1.6875rem,3.4vw,2.5rem);
+  --t-h3:clamp(1.375rem,2.2vw,1.75rem);
+  --t-h4:1.25rem;
+  --t-lead:1.1875rem;
+  --t-corpo:1rem;
+  --t-apoio:0.875rem;
+  --t-selo:0.8125rem;
+
+  --r-selo:6px; --r-acao:10px; --r-card:14px; --r-painel:20px; --r-total:999px; --r-zero:0;
+
+  --s1:0 1px 2px rgba(11,34,57,.06),0 2px 8px rgba(11,34,57,.06);
+  --s2:0 10px 26px rgba(11,34,57,.10);
+  --s3:0 16px 40px rgba(11,34,57,.16);
+  --s-acao:0 8px 20px rgba(222,31,38,.28);
+  --s-produto:0 24px 60px rgba(15,107,212,.22);
+
+  --e1:4px; --e2:8px; --e3:12px; --e4:16px; --e5:24px;
+  --e6:32px; --e7:48px; --e8:64px; --e9:96px; --e10:128px;
+  --container:1200px;
+  --transicao:180ms cubic-bezier(.2,.7,.3,1);
+}
+
+/* ========================= BASE ========================= */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:104px}
+body{
+  font-family:var(--fonte-corpo);
+  color:var(--azul-placa);
+  background:var(--branco-bancada);
+  font-size:var(--t-corpo);line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:var(--fonte-titulo);line-height:1.15;letter-spacing:-.015em}
+img{max-width:100%;display:block}
+a{color:var(--azul-sinal)}
+ul{list-style:none}
+
+.container{max-width:var(--container);margin:0 auto;padding:0 24px}
+.secao{padding:var(--e9) 0}
+.secao--cinza{background:var(--cinza-antiestatico)}
+.secao--navy{background:linear-gradient(160deg,var(--azul-placa),var(--azul-fumaca));color:#fff}
+
+.pular{
+  position:absolute;left:-9999px;top:0;z-index:200;
+  background:var(--azul-placa);color:#fff;padding:14px 20px;
+  border-radius:0 0 var(--r-acao) 0;font-weight:600;text-decoration:none;
+}
+.pular:focus{left:0}
+.so-leitor{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+
+/* ========================= TIPOGRAFIA ========================= */
+.h1{font-size:var(--t-h1);font-weight:800;letter-spacing:-.02em;line-height:1.05}
+.h2{font-size:var(--t-h2);font-weight:700;letter-spacing:-.015em;line-height:1.15}
+.h3{font-size:var(--t-h3);font-weight:700;line-height:1.25}
+.lead{font-size:var(--t-lead);line-height:1.55;color:var(--grafite)}
+.corpo{font-size:var(--t-corpo);line-height:1.65;max-width:68ch}
+.apoio{font-size:var(--t-apoio);color:var(--grafite)}
+.selo{font-size:var(--t-selo);font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--vermelho-vile);display:inline-block}
+.linha-vermelha{color:var(--vermelho-vile)}
+.secao--navy .lead,.secao--navy .apoio{color:#C3D3E4}
+.cabeca-secao{max-width:70ch;margin-bottom:var(--e7)}
+.cabeca-secao .selo{margin-bottom:var(--e3)}
+.cabeca-secao p{margin-top:var(--e3)}
+
+/* ========================= BOTÕES (52px · raio 10 · peso 600) ========================= */
+.btn{
+  font-family:var(--fonte-corpo);font-size:16px;font-weight:600;letter-spacing:.01em;
+  min-height:52px;padding:0 28px;border-radius:var(--r-acao);border:none;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  cursor:pointer;transition:var(--transicao);text-decoration:none;text-align:center;
+}
+.btn:focus-visible{outline:3px solid var(--azul-sinal);outline-offset:2px}
+.btn-p{background:var(--vermelho-vile);color:#fff}
+.btn-p:hover{background:var(--vermelho-forte);transform:translateY(-1px);box-shadow:var(--s-acao)}
+.btn-p:active{transform:translateY(0);box-shadow:none}
+.btn-w{background:var(--verde-whats);color:#fff}
+.btn-w:hover{background:#0B6836;transform:translateY(-1px);box-shadow:0 8px 20px rgba(14,124,65,.28)}
+.btn-w:active{transform:translateY(0);box-shadow:none}
+.btn-s{background:transparent;color:var(--azul-placa);border:1.5px solid var(--azul-placa)}
+.btn-s:hover{background:var(--azul-placa);color:#fff}
+.btn-t{background:transparent;color:var(--azul-sinal);padding:0 6px;min-height:44px}
+.btn-t:hover{text-decoration:underline;text-underline-offset:4px}
+.btn-claro{background:#fff;color:var(--azul-placa)}
+.btn-claro:hover{background:#E8EFF7}
+.btn-contorno-claro{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.45)}
+.btn-contorno-claro:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.btn-contorno-claro:focus-visible{outline-color:#fff}
+.btn[disabled]{background:var(--borda);color:var(--desabilitado);cursor:not-allowed;transform:none;box-shadow:none}
+.btn-mini{min-height:44px;padding:0 18px;font-size:14px;border-radius:8px}
+.linha-btn{display:flex;gap:var(--e4);flex-wrap:wrap;align-items:center}
+.micro-cta{font-size:var(--t-apoio);color:var(--grafite);margin-top:var(--e3)}
+.secao--navy .micro-cta,.hero .micro-cta{color:#C3D3E4}
+
+/* ========================= TOPO ========================= */
+.topo{
+  position:sticky;top:0;z-index:60;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--borda);
+}
+.topo-in{max-width:var(--container);margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:var(--e5)}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;margin-right:auto}
+.marca:focus-visible{outline:3px solid var(--azul-sinal);outline-offset:4px;border-radius:6px}
+.marca-txt strong{font-family:var(--fonte-titulo);font-weight:800;font-size:18px;letter-spacing:-.02em;display:block;line-height:1.1}
+.marca-txt span{font-size:11px;color:var(--grafite);letter-spacing:.18em;text-transform:uppercase}
+.menu{display:flex;gap:var(--e2);align-items:center}
+.menu a{
+  font-size:14.5px;font-weight:500;color:var(--grafite);text-decoration:none;
+  padding:10px 12px;border-radius:8px;transition:var(--transicao);
+  min-height:44px;display:inline-flex;align-items:center;
+}
+.menu a:hover{color:var(--azul-placa);background:var(--cinza-antiestatico)}
+.menu a:focus-visible{outline:3px solid var(--azul-sinal);outline-offset:2px}
+.topo-contato{display:flex;align-items:center;gap:var(--e3)}
+.topo-endereco{font-size:12.5px;color:var(--grafite);line-height:1.35;text-align:right;max-width:24ch}
+.abre-menu{
+  display:none;background:transparent;border:1.5px solid var(--borda-forte);border-radius:8px;
+  width:46px;height:46px;align-items:center;justify-content:center;color:var(--azul-placa);cursor:pointer;
+}
+.abre-menu:focus-visible{outline:3px solid var(--azul-sinal);outline-offset:2px}
+
+/* ========================= HERO ========================= */
+.hero{
+  background:linear-gradient(160deg,var(--azul-placa),var(--azul-fumaca));
+  color:#fff;position:relative;overflow:hidden;padding:var(--e9) 0 var(--e8);
+}
+.hero::after{
+  content:"";position:absolute;right:-120px;top:-120px;width:520px;height:520px;
+  background:radial-gradient(circle,rgba(15,107,212,.45),transparent 68%);pointer-events:none;
+}
+.hero-grade{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:var(--e8);align-items:center}
+.hero h1{font-size:var(--t-h1);font-weight:800;letter-spacing:-.025em;max-width:14ch}
+.hero h1 span{display:block;color:#FF6B70}
+.hero .lead{margin-top:var(--e4);max-width:52ch;color:#C3D3E4}
+.hero .linha-btn{margin-top:var(--e6)}
+.selos{display:flex;gap:10px;flex-wrap:wrap;margin-top:var(--e6)}
+.selo-topo{
+  font-size:13px;font-weight:600;letter-spacing:.03em;
+  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);
+  padding:8px 14px;border-radius:var(--r-total);display:inline-flex;align-items:center;gap:8px;
+}
+.selo-topo svg{flex:none}
+.hero-arte{position:relative}
+
+/* ========================= FAIXA DE CONFIANÇA ========================= */
+.confianca{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:var(--e5);padding:var(--e6) 0}
+.confianca li strong{display:block;font-size:15px;font-weight:600;margin-bottom:2px}
+.confianca li span{font-size:13px;color:var(--grafite);display:block}
+.confianca .ic{color:var(--azul-sinal);margin-bottom:10px;display:block}
+
+/* ========================= CARDS ========================= */
+.grade{display:grid;gap:var(--e5)}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.card{
+  background:#fff;border:1px solid var(--borda);border-radius:var(--r-card);
+  padding:28px;transition:var(--transicao);box-shadow:var(--s1);
+  display:flex;flex-direction:column;
+}
+.card:hover,.card:focus-within{border-color:var(--azul-sinal);box-shadow:var(--s2);transform:translateY(-2px)}
+.card .icone{
+  width:48px;height:48px;border-radius:12px;background:var(--cinza-antiestatico);
+  color:var(--azul-sinal);display:flex;align-items:center;justify-content:center;
+  margin-bottom:16px;transition:var(--transicao);
+}
+.card:hover .icone{background:var(--azul-sinal);color:#fff}
+.card h3{font-size:20px;font-weight:600;margin-bottom:8px;font-family:var(--fonte-titulo)}
+.card p{font-size:15px;color:var(--grafite)}
+.card .acao-card{margin-top:auto;padding-top:18px}
+.lista-check{margin-top:var(--e3);display:grid;gap:8px}
+.lista-check li{font-size:14.5px;color:var(--grafite);display:flex;gap:10px;align-items:flex-start}
+.lista-check svg{flex:none;color:var(--verde-whats);margin-top:4px}
+
+.card-prova{background:#fff;border-radius:var(--r-card);border-left:3px solid var(--vermelho-vile);padding:24px;box-shadow:var(--s1)}
+.estrelas{color:var(--ambar);font-size:15px;letter-spacing:2px}
+.card-prova p{margin:10px 0 14px;font-size:15.5px}
+.card-prova .quem{font-size:14px;color:var(--grafite)}
+
+/* ========================= NÚMEROS E GRÁFICOS ========================= */
+.numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:var(--e5);margin-bottom:var(--e7)}
+.numero strong{
+  display:block;font-family:var(--fonte-titulo);font-size:clamp(2.4rem,5vw,3.25rem);
+  font-weight:800;letter-spacing:-.02em;line-height:1;color:#fff;
+}
+.numero strong small{font-size:.42em;font-weight:700;margin-left:4px;letter-spacing:0}
+.numero span{display:block;font-size:14.5px;color:#C3D3E4;margin-top:8px}
+
+.painel-grafico{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--r-painel);padding:var(--e6)}
+.painel-grafico figcaption{font-size:13.5px;color:#C3D3E4;margin-top:var(--e5)}
+.grafico-topo{display:flex;align-items:center;gap:var(--e6);flex-wrap:wrap}
+.medidor{position:relative;width:132px;height:132px;flex:none}
+.medidor svg{transform:rotate(-90deg)}
+.medidor-trilho{stroke:rgba(255,255,255,.16)}
+.medidor-arco{stroke:var(--ambar);stroke-linecap:round;stroke-dasharray:352;stroke-dashoffset:var(--arco,0);transition:stroke-dashoffset 1400ms cubic-bezier(.2,.7,.3,1)}
+.js .medidor-arco{stroke-dashoffset:352}
+.js .animar .medidor-arco{stroke-dashoffset:var(--arco,0)}
+.medidor-valor{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--fonte-titulo)}
+.medidor-valor b{font-size:34px;font-weight:800;line-height:1}
+.medidor-valor i{font-style:normal;font-size:11px;color:#C3D3E4;letter-spacing:.08em;text-transform:uppercase;margin-top:5px}
+
+.barras{display:grid;gap:10px;flex:1;min-width:240px}
+.barra-linha{display:grid;grid-template-columns:40px 1fr 34px;gap:12px;align-items:center;font-size:13px}
+.barra-linha .rot{color:#C3D3E4;font-variant-numeric:tabular-nums}
+.barra-trilho{display:block;height:12px;background:rgba(255,255,255,.12);border-radius:var(--r-total);overflow:hidden}
+.barra-preench{display:block;height:100%;background:var(--ambar);border-radius:var(--r-total);width:var(--w,0%);transition:width 1200ms cubic-bezier(.2,.7,.3,1)}
+.js .barra-preench{width:0}
+.js .animar .barra-preench{width:var(--w,0%)}
+.barra-linha .val{text-align:right;color:#fff;font-weight:600;font-variant-numeric:tabular-nums}
+
+/* ========================= FLUXO ========================= */
+.fluxo{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:var(--e4)}
+.fluxo::before{
+  content:"";position:absolute;top:34px;left:10%;right:10%;height:2px;
+  background:repeating-linear-gradient(90deg,var(--borda-forte) 0 8px,transparent 8px 16px);
+  transform:scaleX(1);transform-origin:left;transition:transform 1200ms cubic-bezier(.2,.7,.3,1);
+}
+.js .fluxo::before{transform:scaleX(0)}
+.js .fluxo.animar::before{transform:scaleX(1)}
+.passo{text-align:center;position:relative}
+.passo .bolha{
+  width:68px;height:68px;border-radius:var(--r-total);margin:0 auto var(--e4);
+  background:#fff;border:2px solid var(--borda);color:var(--azul-sinal);
+  display:flex;align-items:center;justify-content:center;position:relative;transition:var(--transicao);
+}
+.passo .n{
+  position:absolute;top:-6px;right:-6px;width:26px;height:26px;border-radius:var(--r-total);
+  background:var(--azul-placa);color:#fff;font-size:13px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;font-family:var(--fonte-titulo);
+}
+.passo:hover .bolha{border-color:var(--azul-sinal);box-shadow:var(--s2);transform:translateY(-3px)}
+.passo h3{font-size:16px;font-weight:600;margin-bottom:6px;font-family:var(--fonte-titulo)}
+.passo p{font-size:14px;color:var(--grafite)}
+.passo:last-child .bolha{border-color:var(--vermelho-vile);color:var(--vermelho-vile)}
+
+/* ========================= LOJA ========================= */
+.duas-colunas{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--e8);align-items:start}
+.painel-endereco{background:#fff;border:1px solid var(--borda);border-radius:var(--r-painel);padding:var(--e6);box-shadow:var(--s1)}
+.dados{display:grid;gap:var(--e4);margin:var(--e5) 0}
+.dados li{display:flex;gap:14px;align-items:flex-start;font-size:15px}
+.dados .ic{color:var(--azul-sinal);flex:none;margin-top:2px}
+.dados strong{display:block;font-weight:600;font-size:15px}
+.dados span{color:var(--grafite);font-size:14px}
+.dados a{color:var(--azul-sinal);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.dados a:hover{text-decoration:underline;text-underline-offset:3px}
+
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:var(--e4)}
+.chip{
+  font-size:14px;font-weight:600;padding:9px 16px;border-radius:var(--r-total);
+  background:var(--cinza-antiestatico);border:1px solid var(--borda);
+  color:var(--azul-placa);transition:var(--transicao);
+}
+.chip:hover{border-color:var(--azul-sinal);color:var(--azul-sinal)}
+.secao--cinza .chip{background:#fff}
+
+.galeria{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:var(--e4);margin-top:var(--e6)}
+.foto-loja{
+  background:var(--cinza-antiestatico);border:1px solid var(--borda);border-radius:var(--r-card);
+  overflow:hidden;position:relative;aspect-ratio:4/3;margin:0;
+}
+.secao--cinza .foto-loja{background:#fff}
+.foto-loja img{width:100%;height:100%;object-fit:cover}
+.foto-loja .marca-agua{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.foto-loja figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:12px 14px;font-size:12.5px;font-weight:600;
+  background:linear-gradient(transparent,rgba(11,34,57,.85));color:#fff;
+}
+
+/* ========================= FORMULÁRIO ========================= */
+.form{background:var(--cinza-antiestatico);border-radius:var(--r-painel);padding:32px;max-width:520px}
+.secao--cinza .form{background:#fff;border:1px solid var(--borda)}
+.campo{margin-bottom:var(--e4)}
+.campo label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+.campo input,.campo select{
+  width:100%;min-height:52px;padding:0 16px;font:inherit;font-size:16px;
+  background:#fff;border:1.5px solid var(--borda);border-radius:var(--r-acao);
+  color:var(--azul-placa);transition:var(--transicao);
+}
+.campo select{
+  appearance:none;
+  background-image:linear-gradient(45deg,transparent 50%,var(--grafite) 50%),linear-gradient(135deg,var(--grafite) 50%,transparent 50%);
+  background-position:calc(100% - 20px) 23px,calc(100% - 14px) 23px;
+  background-size:6px 6px;background-repeat:no-repeat;
+}
+.campo input::placeholder{color:var(--desabilitado)}
+.campo input:focus,.campo select:focus{outline:none;border-color:var(--azul-sinal);box-shadow:0 0 0 4px rgba(15,107,212,.16)}
+.campo .dica{font-size:13px;color:var(--grafite);margin-top:6px}
+.campo.erro input{border-color:var(--vermelho-vile)}
+.campo .msg-erro{display:none;font-size:13px;color:var(--vermelho-vile);margin-top:6px;font-weight:500}
+.campo.erro .msg-erro{display:block}
+.form .btn{width:100%}
+.rodape-form{font-size:13px;color:var(--grafite);margin-top:12px;text-align:center}
+.sucesso{background:var(--azul-placa);color:#fff;border-radius:var(--r-painel);padding:32px;max-width:520px;display:none}
+.sucesso.visivel{display:block}
+.sucesso h3{font-size:20px;margin-bottom:8px;font-family:var(--fonte-titulo)}
+.sucesso p{color:#C3D3E4;font-size:15px}
+.sucesso .btn{margin-top:var(--e5)}
+
+/* ========================= RODAPÉ ========================= */
+.rodape{background:var(--azul-placa);color:#fff;padding:var(--e8) 0 var(--e6)}
+.rodape-grade{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:var(--e7)}
+.rodape h2{font-size:16px;font-weight:700;margin-bottom:var(--e4);font-family:var(--fonte-titulo)}
+.rodape p,.rodape li{font-size:14.5px;color:#C3D3E4;line-height:1.7}
+.rodape a{color:#C3D3E4;text-decoration:none;transition:var(--transicao);display:inline-flex;align-items:center;min-height:34px}
+.rodape a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
+.rodape a:focus-visible{outline:3px solid #fff;outline-offset:2px;border-radius:4px}
+.rodape .marca-txt strong{color:#fff}
+.rodape .marca-txt span{color:#8FA6BE}
+.rodape-fim{
+  margin-top:var(--e7);padding-top:var(--e5);border-top:1px solid rgba(255,255,255,.14);
+  display:flex;justify-content:space-between;gap:var(--e4);flex-wrap:wrap;font-size:13px;color:#8FA6BE;
+}
+
+/* ========================= FLUTUANTE + BARRA MOBILE ========================= */
+.flutuante-area{position:fixed;right:24px;bottom:24px;z-index:70;display:flex;align-items:center;gap:12px}
+.balao{
+  background:#fff;color:var(--azul-placa);font-size:14px;font-weight:600;
+  padding:10px 16px;border-radius:var(--r-total);box-shadow:var(--s3);white-space:nowrap;
+  opacity:0;transform:translateX(10px);transition:var(--transicao);pointer-events:none;
+}
+.balao.visivel{opacity:1;transform:translateX(0)}
+.flutuante{
+  width:60px;height:60px;border-radius:var(--r-total);flex:none;
+  background:var(--verde-whats);color:#fff;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px rgba(11,34,57,.28);
+  transition:var(--transicao);opacity:0;pointer-events:none;transform:translateY(10px);text-decoration:none;
+}
+.flutuante-area.visivel .flutuante{opacity:1;pointer-events:auto;transform:translateY(0)}
+.flutuante:hover{background:#0B6836}
+.flutuante:focus-visible{outline:3px solid var(--azul-sinal);outline-offset:3px}
+
+.barra-mobile{
+  display:none;position:fixed;left:0;right:0;bottom:0;z-index:75;
+  background:#fff;border-top:1px solid var(--borda);padding:10px 12px;gap:10px;
+  box-shadow:0 -6px 20px rgba(11,34,57,.10);
+}
+.barra-mobile .btn{min-height:52px;font-size:15px;padding:0 12px}
+.barra-mobile .btn-w{flex:7}
+.barra-mobile .btn-s{flex:3}
+
+/* ========================= ANIMAÇÕES ========================= */
+.js .revela{opacity:0;transform:translateY(18px);transition:opacity 620ms cubic-bezier(.2,.7,.3,1),transform 620ms cubic-bezier(.2,.7,.3,1)}
+.revela.dentro{opacity:1;transform:none}
+.revela[data-atraso="1"]{transition-delay:80ms}
+.revela[data-atraso="2"]{transition-delay:160ms}
+.revela[data-atraso="3"]{transition-delay:240ms}
+.revela[data-atraso="4"]{transition-delay:320ms}
+
+@keyframes desenha{to{stroke-dashoffset:0}}
+@keyframes pulsa{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes flutua{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes corre{to{stroke-dashoffset:-64}}
+@keyframes onda-sobe{0%{opacity:0}45%{opacity:1}100%{opacity:0}}
+.traco-anima{stroke-dasharray:420;stroke-dashoffset:420;animation:desenha 2.6s cubic-bezier(.2,.7,.3,1) forwards}
+.ponto-pulsa{animation:pulsa 2.2s ease-in-out infinite}
+.arte-flutua{animation:flutua 6s ease-in-out infinite}
+.linha-corre{stroke-dasharray:6 10;animation:corre 2.6s linear infinite}
+.arco-wifi{animation:onda-sobe 2.6s ease-out infinite}
+.arco-wifi-2{animation-delay:.35s}
+.arco-wifi-3{animation-delay:.7s}
+
+/* ========================= TABLET ========================= */
+@media (max-width:1024px){
+  :root{--e9:72px}
+  .hero-grade{grid-template-columns:1fr;gap:var(--e7)}
+  .hero-arte{max-width:540px}
+  .duas-colunas{grid-template-columns:1fr;gap:var(--e7)}
+  .rodape-grade{grid-template-columns:1fr 1fr;gap:var(--e6)}
+  .topo-endereco{display:none}
+  .fluxo{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));row-gap:var(--e6)}
+  .fluxo::before{display:none}
+}
+
+/* ========================= MOBILE (< 768px) ========================= */
+@media (max-width:767px){
+  :root{--e9:56px;--e8:48px;--e7:36px}
+  html{scroll-padding-top:80px}
+  .container{padding:0 16px}
+  body{padding-bottom:76px}
+
+  .topo-in{padding:10px 16px;gap:var(--e3)}
+  .abre-menu{display:flex}
+  .topo-contato .btn-mini{display:none}
+  .menu{
+    display:none;position:absolute;left:0;right:0;top:100%;
+    flex-direction:column;align-items:stretch;gap:2px;background:#fff;
+    border-bottom:1px solid var(--borda);padding:8px 16px 16px;box-shadow:var(--s2);
+  }
+  .menu.aberto{display:flex}
+  .menu a{min-height:48px;font-size:16px;padding:12px}
+
+  .hero{padding:var(--e8) 0 var(--e7)}
+  .hero h1{max-width:none}
+  .hero .linha-btn{flex-direction:column;align-items:stretch;width:100%}
+  .hero .linha-btn .btn{width:100%}
+  .card{padding:24px}
+  .painel-endereco,.form,.sucesso,.painel-grafico{padding:24px}
+  .grafico-topo{flex-direction:column;align-items:stretch}
+  .medidor{margin:0 auto}
+  .fluxo{grid-template-columns:1fr;gap:var(--e5)}
+  .passo{display:grid;grid-template-columns:68px 1fr;gap:var(--e4);text-align:left;align-items:start}
+  .passo .bolha{margin:0}
+  .rodape-grade{grid-template-columns:1fr;gap:var(--e6)}
+  .rodape a{min-height:44px}
+  .barra-mobile{display:flex}
+  .flutuante-area{bottom:88px;right:16px}
+  .balao{display:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+  .js .revela{opacity:1;transform:none}
+  .js .medidor-arco{stroke-dashoffset:var(--arco,0)}
+  .js .barra-preench{width:var(--w,0%)}
+  .js .fluxo::before{transform:scaleX(1)}
+  .traco-anima{stroke-dashoffset:0}
+}
+</style>
+</head>
+<body>
+
+<script>document.documentElement.classList.add('js');</script>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- ==========================================================================
+     CABEÇALHO
+     ========================================================================== -->
+<header class="topo">
+  <div class="topo-in">
+    <a class="marca" href="#inicio" aria-label="VileTech Informática — início">
+      <svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+        <path d="M4 5h11l8 20L15 35z" fill="#DE1F26"/>
+        <path d="M25 5h11L25 35 19.5 21z" fill="#0F6BD4"/>
+      </svg>
+      <span class="marca-txt"><strong>VileTech</strong><span>Informática</span></span>
+    </a>
+
+    <nav class="menu" id="menu" aria-label="Navegação principal">
+      <a href="#servicos">Serviços</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#loja">A loja</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <div class="topo-contato">
+      <p class="topo-endereco">R. Barão do Rio Branco, 211 — Centro, Lavras/MG</p>
+      <a class="btn btn-s btn-mini" href="tel:+553534093030">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L16 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3z"/></svg>
+        (35) 3409-3030
+      </a>
+      <button class="abre-menu" id="abreMenu" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu de navegação">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- ========================================================================
+       HERO
+       ======================================================================== -->
+  <section class="hero" id="inicio" aria-labelledby="tituloHero">
+    <div class="container hero-grade">
+      <div>
+        <p class="selo" style="color:#FF6B70">Assistência Técnica de Informática</p>
+        <h1 id="tituloHero">Seu computador <span>volta hoje mesmo.</span></h1>
+        <p class="lead">Traga o equipamento na loja ou chame no WhatsApp: a gente avalia e diz o que compensa consertar.</p>
+
+        <div class="linha-btn">
+          <a class="btn btn-p" data-zap="Olá! Vim pelo site e quero falar com um técnico." href="https://wa.me/553534093030?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20falar%20com%20um%20t%C3%A9cnico." target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.4 4.5-1.2A10 10 0 1 0 12 2zm5.3 14c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.1-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4 0 .5-.1l.7-.8c.2-.2.3-.2.6-.1l1.7.8c.3.1.5.2.5.4 0 .1 0 .5-.2 1z"/></svg>
+            Falar no WhatsApp agora
+          </a>
+          <a class="btn btn-contorno-claro" href="#servicos">Ver os serviços</a>
+        </div>
+        <p class="micro-cta">Resposta em minutos, de segunda a sexta, 8h às 18h</p>
+
+        <ul class="selos">
+          <li class="selo-topo">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#F0A020" aria-hidden="true" focusable="false"><path d="M12 2l2.9 6.3 6.6.8-4.9 4.6 1.3 6.6L12 17l-5.9 3.3 1.3-6.6L2.5 9.1l6.6-.8z"/></svg>
+            5,0 · 37 avaliações no Google
+          </li>
+          <li class="selo-topo">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C3D3E4" stroke-width="1.9" aria-hidden="true" focusable="false"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            Loja física no Centro de Lavras
+          </li>
+          <li class="selo-topo">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C3D3E4" stroke-width="1.9" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M12 20.5s-7-4.4-7-9.6A3.9 3.9 0 0 1 12 8.4a3.9 3.9 0 0 1 7 2.5c0 5.2-7 9.6-7 9.6z"/></svg>
+            Empresa que acolhe a comunidade LGBTQ+
+          </li>
+        </ul>
+      </div>
+
+      <!-- ILUSTRAÇÃO: bancada de diagnóstico -->
+      <div class="hero-arte">
+        <svg viewBox="0 0 560 430" width="100%" role="img" aria-labelledby="arteTitulo arteDesc" focusable="false">
+          <title id="arteTitulo">Notebook aberto na bancada durante um diagnóstico</title>
+          <desc id="arteDesc">Ilustração de um notebook com a tela mostrando um gráfico de diagnóstico em andamento, barras de checagem de memória, disco e bateria, e um selo verde indicando teste aprovado.</desc>
+
+          <defs>
+            <linearGradient id="gTela" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#123A5F"/>
+              <stop offset="1" stop-color="#0B2239"/>
+            </linearGradient>
+            <linearGradient id="gBase" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#DCE3EC"/>
+              <stop offset="1" stop-color="#B9C6D6"/>
+            </linearGradient>
+          </defs>
+
+          <!-- traços de circuito ao fundo -->
+          <g stroke="#0F6BD4" stroke-width="1.5" fill="none" opacity=".45">
+            <path class="linha-corre" d="M20 60h70v40h60"/>
+            <path class="linha-corre" d="M540 90h-80v50h-40"/>
+            <path class="linha-corre" d="M30 350h80v-30h50"/>
+            <path class="linha-corre" d="M530 330h-70v40h-50"/>
+          </g>
+          <g fill="#25D366">
+            <circle class="ponto-pulsa" cx="150" cy="100" r="4"/>
+            <circle class="ponto-pulsa" cx="420" cy="140" r="4" style="animation-delay:.6s"/>
+            <circle class="ponto-pulsa" cx="160" cy="320" r="4" style="animation-delay:1.2s"/>
+            <circle class="ponto-pulsa" cx="410" cy="370" r="4" style="animation-delay:1.8s"/>
+          </g>
+
+          <g class="arte-flutua">
+            <!-- tampa / tela -->
+            <rect x="130" y="70" width="300" height="196" rx="12" fill="url(#gTela)" stroke="#0F6BD4" stroke-width="2"/>
+            <rect x="144" y="84" width="272" height="168" rx="7" fill="#0B2239"/>
+
+            <!-- barra superior da tela -->
+            <g fill="#46586B">
+              <circle cx="158" cy="97" r="3.2"/><circle cx="169" cy="97" r="3.2"/><circle cx="180" cy="97" r="3.2"/>
+            </g>
+            <text x="404" y="101" text-anchor="end" fill="#8FA6BE" font-family="'IBM Plex Sans',sans-serif" font-size="10" letter-spacing="1.4">DIAGNÓSTICO</text>
+
+            <!-- gráfico de linha -->
+            <g>
+              <path d="M158 210h248" stroke="#1E3B57" stroke-width="1"/>
+              <path d="M158 180h248" stroke="#1E3B57" stroke-width="1"/>
+              <path d="M158 150h248" stroke="#1E3B57" stroke-width="1"/>
+              <path class="traco-anima" d="M158 205l30-18 28 12 30-34 32 20 30-30 28 16 32-26 30 12"
+                    fill="none" stroke="#25D366" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="398" cy="163" r="4.5" fill="#25D366" class="ponto-pulsa"/>
+            </g>
+
+            <!-- barrinhas de checagem -->
+            <g font-family="'IBM Plex Sans',sans-serif" font-size="9" fill="#8FA6BE">
+              <text x="158" y="230">MEMÓRIA</text>
+              <rect x="205" y="223" width="60" height="6" rx="3" fill="#1E3B57"/>
+              <rect x="205" y="223" width="60" height="6" rx="3" fill="#0F6BD4"/>
+
+              <text x="280" y="230">DISCO</text>
+              <rect x="315" y="223" width="60" height="6" rx="3" fill="#1E3B57"/>
+              <rect x="315" y="223" width="46" height="6" rx="3" fill="#F0A020"/>
+
+              <text x="158" y="245">BATERIA</text>
+              <rect x="205" y="238" width="60" height="6" rx="3" fill="#1E3B57"/>
+              <rect x="205" y="238" width="52" height="6" rx="3" fill="#25D366"/>
+
+              <text x="280" y="245">TELA</text>
+              <rect x="315" y="238" width="60" height="6" rx="3" fill="#1E3B57"/>
+              <rect x="315" y="238" width="60" height="6" rx="3" fill="#25D366"/>
+            </g>
+
+            <!-- base do notebook -->
+            <path d="M104 266h352l26 30H78z" fill="url(#gBase)"/>
+            <rect x="238" y="277" width="84" height="7" rx="3.5" fill="#8697A8"/>
+
+            <!-- selo aprovado -->
+            <g transform="translate(400 292)">
+              <circle cx="0" cy="0" r="34" fill="#0E7C41"/>
+              <path d="M-14 1l9 9 19-19" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+
+            <!-- chave de fenda -->
+            <g transform="translate(86 300) rotate(-28)">
+              <rect x="0" y="0" width="12" height="52" rx="3" fill="#DE1F26"/>
+              <rect x="3" y="52" width="6" height="40" fill="#B9C6D6"/>
+              <rect x="2" y="88" width="8" height="8" fill="#8697A8"/>
+            </g>
+          </g>
+
+          <!-- sombra da bancada -->
+          <ellipse cx="280" cy="392" rx="190" ry="14" fill="#0B2239" opacity=".35"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       FAIXA DE CONFIANÇA
+       ======================================================================== -->
+  <section aria-label="Motivos para confiar na VileTech">
+    <div class="container">
+      <ul class="confianca">
+        <li class="revela">
+          <span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" focusable="false"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+          <strong>Loja física em Lavras</strong><span>Você sabe onde nos encontrar</span>
+        </li>
+        <li class="revela" data-atraso="1">
+          <span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" focusable="false"><path d="M12 3l7 3v6c0 4.4-3 7.7-7 9-4-1.3-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <strong>Garantia por escrito</strong><span>Prazo definido no orçamento</span>
+        </li>
+        <li class="revela" data-atraso="2">
+          <span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <strong>Diagnóstico no mesmo dia</strong><span>Sem compromisso de fechar</span>
+        </li>
+        <li class="revela" data-atraso="3">
+          <span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" focusable="false"><path d="M20 6H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z"/><path d="M8 6V4h8v2"/></svg></span>
+          <strong>Todas as marcas</strong><span>Dell, HP, Lenovo, Acer, Asus</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SERVIÇOS
+       ======================================================================== -->
+  <section class="secao secao--cinza" id="servicos" aria-labelledby="tituloServicos">
+    <div class="container">
+      <div class="cabeca-secao revela">
+        <p class="selo">Serviços</p>
+        <h2 class="h2" id="tituloServicos">Manutenção com diagnóstico gratuito</h2>
+        <p class="corpo">Atendemos notebooks, desktops e periféricos das principais marcas. O diagnóstico sai no mesmo dia e o orçamento vai por escrito antes de qualquer serviço começar.</p>
+      </div>
+
+      <div class="grade g3">
+        <article class="card revela">
+          <span class="icone" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" focusable="false"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M2 20h20"/></svg></span>
+          <h3>Manutenção de notebook</h3>
+          <p>Limpeza, troca de tela, teclado e bateria. Diagnóstico no mesmo dia.</p>
+          <div class="acao-card">
+            <a class="btn btn-t" data-zap="Olá! Quero orçamento para: manutenção de notebook" href="https://wa.me/553534093030?text=Ol%C3%A1!%20Quero%20or%C3%A7amento%20para%3A%20manuten%C3%A7%C3%A3o%20de%20notebook" target="_blank" rel="noopener">Falar sobre meu notebook</a>
+          </div>
+        </article>
+
+        <article class="card revela" data-atraso="1">
+          <span class="icone" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" focusable="false"><path d="M5 12.5V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6.5"/><path d="M3 17h18M9 21h6"/></svg></span>
+          <h3>Montagem de PC</h3>
+          <p>Configuração escolhida com você, montada e testada antes de sair da loja.</p>
+          <div class="acao-card">
+            <a class="btn btn-t" data-zap="Olá! Quero orçamento para: montagem de PC" href="https://wa.me/553534093030?text=Ol%C3%A1!%20Quero%20or%C3%A7amento%20para%3A%20montagem%20de%20PC" target="_blank" rel="noopener">Montar minha máquina</a>
+          </div>
+        </article>
+
+        <article class="card revela" data-atraso="2">
+          <span class="icone" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" focusable="false">
+              <path class="arco-wifi" d="M2 9a15 15 0 0 1 20 0"/>
+              <path class="arco-wifi arco-wifi-2" d="M5 13a10 10 0 0 1 14 0"/>
+              <path class="arco-wifi arco-wifi-3" d="M8.5 16.5a5 5 0 0 1 7 0"/>
+              <circle cx="12" cy="20" r="1"/>
+            </svg>
+          </span>
+          <h3>Rede e Wi-Fi</h3>
+          <p>Roteador certo para o tamanho da casa, instalado e com sinal medido.</p>
+          <div class="acao-card">
+            <a class="btn btn-t" data-zap="Olá! Quero orçamento para: rede e Wi-Fi" href="https://wa.me/553534093030?text=Ol%C3%A1!%20Quero%20or%C3%A7amento%20para%3A%20rede%20e%20Wi-Fi" target="_blank" rel="noopener">Resolver meu sinal</a>
+          </div>
+        </article>
+
+        <article class="card revela">
+          <span class="icone" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" focusable="false"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M2 20h20M9 8l6 6M15 8l-6 6"/></svg></span>
+          <h3>Troca de Tela e Bateria de Notebook</h3>
+          <p>Seu notebook está com a tela quebrada, trincada ou com defeito? A bateria não segura mais carga?</p>
+          <ul class="lista-check">
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Troca de tela de notebook</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Troca de bateria</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Diagnóstico e manutenção</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Serviço especializado</li>
+          </ul>
+          <div class="acao-card">
+            <a class="btn btn-t" data-zap="Olá! Quero orçamento para: troca de tela ou bateria de notebook" href="https://wa.me/553534093030?text=Ol%C3%A1!%20Quero%20or%C3%A7amento%20para%3A%20troca%20de%20tela%20ou%20bateria%20de%20notebook" target="_blank" rel="noopener">Pedir orçamento da troca</a>
+          </div>
+        </article>
+
+        <article class="card revela" data-atraso="1">
+          <span class="icone" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" focusable="false"><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7"/><path d="M7 10l5 5 5-5M12 15V3"/></svg></span>
+          <h3>Formatação e backup</h3>
+          <p>Seus arquivos preservados e o sistema limpo, pronto para usar.</p>
+          <div class="acao-card">
+            <a class="btn btn-t" data-zap="Olá! Quero orçamento para: formatação e backup" href="https://wa.me/553534093030?text=Ol%C3%A1!%20Quero%20or%C3%A7amento%20para%3A%20formata%C3%A7%C3%A3o%20e%20backup" target="_blank" rel="noopener">Pedir orçamento</a>
+          </div>
+        </article>
+
+        <article class="card revela" data-atraso="2">
+          <span class="icone" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" focusable="false"><rect x="2" y="7" width="20" height="11" rx="4"/><path d="M7 11v3M5.5 12.5h3"/><circle cx="16" cy="12" r="1"/><circle cx="18.5" cy="14.5" r="1"/></svg></span>
+          <h3>Videogames e smartphones</h3>
+          <p>Notebooks • PCs • Impressoras • Projetores<br>🎮 Videogames • Smartphones</p>
+          <div class="acao-card">
+            <a class="btn btn-t" data-zap="Olá! Quero orçamento para: videogame ou smartphone" href="https://wa.me/553534093030?text=Ol%C3%A1!%20Quero%20or%C3%A7amento%20para%3A%20videogame%20ou%20smartphone" target="_blank" rel="noopener">Falar sobre meu aparelho</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="linha-btn revela" style="margin-top:var(--e7);flex-direction:column;align-items:flex-start;gap:0">
+        <a class="btn btn-p" data-zap="Olá! Quero orçamento para: " href="https://wa.me/553534093030?text=Ol%C3%A1!%20Quero%20or%C3%A7amento%20para%3A%20" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.4 4.5-1.2A10 10 0 1 0 12 2zm5.3 14c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.1-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4 0 .5-.1l.7-.8c.2-.2.3-.2.6-.1l1.7.8c.3.1.5.2.5.4 0 .1 0 .5-.2 1z"/></svg>
+          Pedir orçamento do meu equipamento
+        </a>
+        <p class="micro-cta">Resposta em minutos, de segunda a sexta, 8h às 18h</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       COMO FUNCIONA
+       ======================================================================== -->
+  <section class="secao" id="como-funciona" aria-labelledby="tituloComo">
+    <div class="container">
+      <div class="cabeca-secao revela">
+        <p class="selo">Como funciona</p>
+        <h2 class="h2" id="tituloComo">Do WhatsApp até o equipamento na sua mão</h2>
+        <p class="corpo">Cinco passos, sem surpresa no meio do caminho. Você acompanha cada um deles e decide se vale a pena seguir.</p>
+      </div>
+
+      <ol class="fluxo" id="fluxo">
+        <li class="passo revela">
+          <span class="bolha" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.4 4.5-1.2A10 10 0 1 0 12 2zm5.3 14c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.1-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4 0 .5-.1l.7-.8c.2-.2.3-.2.6-.1l1.7.8c.3.1.5.2.5.4 0 .1 0 .5-.2 1z"/></svg>
+            <span class="n">1</span>
+          </span>
+          <div>
+            <h3>Você chama no WhatsApp</h3>
+            <p>Conta o que está acontecendo com o equipamento.</p>
+          </div>
+        </li>
+        <li class="passo revela" data-atraso="1">
+          <span class="bolha" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21M11 8v3l2 1.5"/></svg>
+            <span class="n">2</span>
+          </span>
+          <div>
+            <h3>Diagnóstico no mesmo dia</h3>
+            <p>Sem compromisso de fechar.</p>
+          </div>
+        </li>
+        <li class="passo revela" data-atraso="2">
+          <span class="bolha" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" focusable="false"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
+            <span class="n">3</span>
+          </span>
+          <div>
+            <h3>Orçamento por escrito</h3>
+            <p>Antes de qualquer serviço começar.</p>
+          </div>
+        </li>
+        <li class="passo revela" data-atraso="3">
+          <span class="bolha" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" focusable="false"><path d="M14.5 3.5a5 5 0 0 0-6.6 6.6L3 15v6h6l4.9-4.9a5 5 0 0 0 6.6-6.6l-3.1 3.1-2.8-2.8z"/></svg>
+            <span class="n">4</span>
+          </span>
+          <div>
+            <h3>Conserto e teste na bancada</h3>
+            <p>O equipamento só sai da loja depois de testado.</p>
+          </div>
+        </li>
+        <li class="passo revela" data-atraso="4">
+          <span class="bolha" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" focusable="false"><path d="M12 3l7 3v6c0 4.4-3 7.7-7 9-4-1.3-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+            <span class="n">5</span>
+          </span>
+          <div>
+            <h3>Garantia por escrito</h3>
+            <p>Prazo definido no orçamento.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       NÚMEROS + GRÁFICO
+       ======================================================================== -->
+  <section class="secao secao--navy" id="numeros" aria-labelledby="tituloNumeros">
+    <div class="container">
+      <div class="cabeca-secao revela">
+        <p class="selo" style="color:#FF6B70">Prova</p>
+        <h2 class="h2" id="tituloNumeros">O que os números da loja dizem</h2>
+        <p class="lead">Nota, volume de avaliações e prazo de atendimento — os dados públicos do perfil da VileTech no Google.</p>
+      </div>
+
+      <ul class="numeros revela">
+        <li class="numero"><strong data-conta="5,0">5,0</strong><span>Nota no Google</span></li>
+        <li class="numero"><strong data-conta="37">37</strong><span>Avaliações de clientes</span></li>
+        <li class="numero"><strong>Mesmo <small>dia</small></strong><span>Diagnóstico do equipamento</span></li>
+        <li class="numero"><strong>8h–18h</strong><span>Segunda a sexta, na loja</span></li>
+      </ul>
+
+      <figure class="painel-grafico revela" id="painelNotas">
+        <div class="grafico-topo">
+          <div class="medidor" style="--arco:0">
+            <svg width="132" height="132" viewBox="0 0 132 132" aria-hidden="true" focusable="false">
+              <circle class="medidor-trilho" cx="66" cy="66" r="56" fill="none" stroke-width="12"/>
+              <circle class="medidor-arco" cx="66" cy="66" r="56" fill="none" stroke-width="12"/>
+            </svg>
+            <span class="medidor-valor"><b>5,0</b><i>de 5,0</i></span>
+          </div>
+
+          <div class="barras" role="img" aria-label="Distribuição das avaliações: 37 avaliações de 5 estrelas, nenhuma avaliação de 4, 3, 2 ou 1 estrela.">
+            <div class="barra-linha">
+              <span class="rot" aria-hidden="true">5 ★</span>
+              <span class="barra-trilho"><span class="barra-preench" style="--w:100%"></span></span>
+              <span class="val" aria-hidden="true">37</span>
+            </div>
+            <div class="barra-linha">
+              <span class="rot" aria-hidden="true">4 ★</span>
+              <span class="barra-trilho"><span class="barra-preench" style="--w:0%"></span></span>
+              <span class="val" aria-hidden="true">0</span>
+            </div>
+            <div class="barra-linha">
+              <span class="rot" aria-hidden="true">3 ★</span>
+              <span class="barra-trilho"><span class="barra-preench" style="--w:0%"></span></span>
+              <span class="val" aria-hidden="true">0</span>
+            </div>
+            <div class="barra-linha">
+              <span class="rot" aria-hidden="true">2 ★</span>
+              <span class="barra-trilho"><span class="barra-preench" style="--w:0%"></span></span>
+              <span class="val" aria-hidden="true">0</span>
+            </div>
+            <div class="barra-linha">
+              <span class="rot" aria-hidden="true">1 ★</span>
+              <span class="barra-trilho"><span class="barra-preench" style="--w:0%"></span></span>
+              <span class="val" aria-hidden="true">0</span>
+            </div>
+          </div>
+        </div>
+        <figcaption>Resumo de avaliações — perfil Viletech Informática no Google. 37 avaliações, média 5,0.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       AVALIAÇÕES
+       ======================================================================== -->
+  <section class="secao secao--cinza" id="avaliacoes" aria-labelledby="tituloAvaliacoes">
+    <div class="container">
+      <div class="cabeca-secao revela">
+        <p class="selo">Avaliações</p>
+        <h2 class="h2" id="tituloAvaliacoes">Quem já trouxe o equipamento</h2>
+        <p class="corpo">Avaliações publicadas no perfil da loja no Google, reproduzidas como foram escritas.</p>
+      </div>
+
+      <div class="grade g3">
+        <figure class="card-prova revela">
+          <div class="estrelas" aria-hidden="true">★★★★★</div>
+          <span class="so-leitor">5 de 5 estrelas.</span>
+          <blockquote><p>Excelente atendimento e ótimos preços. Podem ir, que não irão se arrepender.. desejo mais e mais sucesso..</p></blockquote>
+          <figcaption class="quem">Carina Vilela — avaliação no Google</figcaption>
+        </figure>
+
+        <figure class="card-prova revela" data-atraso="1">
+          <div class="estrelas" aria-hidden="true">★★★★★</div>
+          <span class="so-leitor">5 de 5 estrelas.</span>
+          <blockquote><p>otimo atendimento!<br>otimos preços</p></blockquote>
+          <figcaption class="quem">Ygor Colombo — avaliação no Google</figcaption>
+        </figure>
+
+        <figure class="card-prova revela" data-atraso="2">
+          <div class="estrelas" aria-hidden="true">★★★★★</div>
+          <span class="so-leitor">5 de 5 estrelas.</span>
+          <blockquote><p>Adorei o atendimento. Pessoal de lá conhece sobre informática. Eles tem muita disponibilidade de produtos que preciso! Me falta é dinheiro pra tanta opção!</p></blockquote>
+          <figcaption class="quem">Juliano Jose Da Silva — avaliação no Google</figcaption>
+        </figure>
+
+        <figure class="card-prova revela">
+          <div class="estrelas" aria-hidden="true">★★★★★</div>
+          <span class="so-leitor">5 de 5 estrelas.</span>
+          <blockquote><p>Ótimos preços e ótimo atendimento!</p></blockquote>
+          <figcaption class="quem">Resumo de avaliações — Google</figcaption>
+        </figure>
+
+        <figure class="card-prova revela" data-atraso="1">
+          <div class="estrelas" aria-hidden="true">★★★★★</div>
+          <span class="so-leitor">5 de 5 estrelas.</span>
+          <blockquote><p>Melhor loja de informática da região, recomendo!</p></blockquote>
+          <figcaption class="quem">Resumo de avaliações — Google</figcaption>
+        </figure>
+      </div>
+
+      <div class="linha-btn revela" style="margin-top:var(--e7);flex-direction:column;align-items:flex-start;gap:0">
+        <a class="btn btn-p" data-zap="Olá! Li os depoimentos e quero atendimento." href="https://wa.me/553534093030?text=Ol%C3%A1!%20Li%20os%20depoimentos%20e%20quero%20atendimento." target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.4 4.5-1.2A10 10 0 1 0 12 2zm5.3 14c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.1-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4 0 .5-.1l.7-.8c.2-.2.3-.2.6-.1l1.7.8c.3.1.5.2.5.4 0 .1 0 .5-.2 1z"/></svg>
+          Quero o mesmo atendimento
+        </a>
+        <p class="micro-cta">Resposta em minutos, de segunda a sexta, 8h às 18h</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       A LOJA
+       ======================================================================== -->
+  <section class="secao" id="loja" aria-labelledby="tituloLoja">
+    <div class="container">
+      <div class="cabeca-secao revela">
+        <p class="selo">A loja</p>
+        <h2 class="h2" id="tituloLoja">Centro de Lavras, com rua e número</h2>
+        <p class="corpo">Negócio com endereço fixo, bancada montada e produtos em estoque. Você pode passar aqui, ver o equipamento de perto e falar com quem vai mexer nele.</p>
+      </div>
+
+      <div class="duas-colunas">
+        <div class="painel-endereco revela">
+          <h3 class="h3">Viletech Informática</h3>
+          <ul class="dados">
+            <li>
+              <span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" focusable="false"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+              <span><strong>R. Barão do Rio Branco, 211 — Centro</strong><span>Lavras - MG, 37200-208 · Q272+PV Centro, Lavras - MG</span></span>
+            </li>
+            <li>
+              <span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" focusable="false"><path d="M6 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L16 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3z"/></svg></span>
+              <span><strong><a href="tel:+553534093030">(35) 3409-3030</a></strong><span>Ligar agora para a loja</span></span>
+            </li>
+            <li>
+              <span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+              <span><strong>Aberto · Fecha 18:00</strong><span>Seg a sex, 8h às 18h</span></span>
+            </li>
+            <li>
+              <span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" focusable="false"><path d="M12 20.5s-7-4.4-7-9.6A3.9 3.9 0 0 1 12 8.4a3.9 3.9 0 0 1 7 2.5c0 5.2-7 9.6-7 9.6z"/></svg></span>
+              <span><strong>Empresa que acolhe a comunidade LGBTQ+</strong><span>Informação do perfil da loja no Google</span></span>
+            </li>
+          </ul>
+
+          <h3 class="h4" style="font-size:16px;margin-top:var(--e6)">O que você encontra aqui</h3>
+          <ul class="chips">
+            <li class="chip">Notebooks</li>
+            <li class="chip">PCs</li>
+            <li class="chip">Impressoras</li>
+            <li class="chip">Projetores</li>
+            <li class="chip">Videogames</li>
+            <li class="chip">Smartphones</li>
+          </ul>
+
+          <h3 class="h4" style="font-size:16px;margin-top:var(--e6)">Marcas atendidas</h3>
+          <ul class="chips">
+            <li class="chip">Dell</li>
+            <li class="chip">HP</li>
+            <li class="chip">Lenovo</li>
+            <li class="chip">Acer</li>
+            <li class="chip">Asus</li>
+          </ul>
+
+          <div class="linha-btn" style="margin-top:var(--e6);flex-direction:column;align-items:stretch;gap:0">
+            <a class="btn btn-p" data-zap="Olá! Vi no site e queria saber sobre: " href="https://wa.me/553534093030?text=Ol%C3%A1!%20Vi%20no%20site%20e%20queria%20saber%20sobre%3A%20" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.4 4.5-1.2A10 10 0 1 0 12 2zm5.3 14c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.1-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4 0 .5-.1l.7-.8c.2-.2.3-.2.6-.1l1.7.8c.3.1.5.2.5.4 0 .1 0 .5-.2 1z"/></svg>
+              Consultar disponibilidade
+            </a>
+            <p class="micro-cta" style="text-align:center">Resposta em minutos, de segunda a sexta, 8h às 18h</p>
+          </div>
+        </div>
+
+        <div class="revela" data-atraso="1">
+          <!-- ILUSTRAÇÃO: mapa esquemático do Centro de Lavras -->
+          <svg viewBox="0 0 460 340" width="100%" role="img" aria-labelledby="mapaTitulo mapaDesc" focusable="false" style="border-radius:var(--r-painel);border:1px solid var(--borda);background:var(--cinza-antiestatico)">
+            <title id="mapaTitulo">Mapa esquemático da localização da loja</title>
+            <desc id="mapaDesc">Ilustração simplificada de quarteirões do Centro de Lavras com um marcador vermelho sobre a Rua Barão do Rio Branco, número 211.</desc>
+
+            <g fill="#FFFFFF" stroke="#DCE3EC" stroke-width="2">
+              <rect x="24" y="24" width="120" height="86" rx="6"/>
+              <rect x="168" y="24" width="150" height="86" rx="6"/>
+              <rect x="342" y="24" width="94" height="86" rx="6"/>
+              <rect x="24" y="196" width="120" height="120" rx="6"/>
+              <rect x="168" y="196" width="150" height="120" rx="6"/>
+              <rect x="342" y="196" width="94" height="120" rx="6"/>
+            </g>
+
+            <!-- avenida principal -->
+            <rect x="0" y="122" width="460" height="52" fill="#E8EFF7"/>
+            <path d="M0 148h460" stroke="#B9C6D6" stroke-width="2" stroke-dasharray="14 12"/>
+            <rect x="146" y="0" width="20" height="340" fill="#E8EFF7"/>
+            <rect x="320" y="0" width="20" height="340" fill="#E8EFF7"/>
+
+            <text x="16" y="115" fill="#46586B" font-family="'IBM Plex Sans',sans-serif" font-size="11" letter-spacing=".08em">R. BARÃO DO RIO BRANCO</text>
+
+            <!-- marcador -->
+            <g transform="translate(230 108)">
+              <ellipse cx="0" cy="46" rx="22" ry="7" fill="#0B2239" opacity=".18"/>
+              <path d="M0 44c0 0-19-16-19-29A19 19 0 0 1 19 15c0 13-19 29-19 29z" fill="#DE1F26"/>
+              <circle cx="0" cy="14" r="7" fill="#fff"/>
+              <circle class="ponto-pulsa" cx="0" cy="14" r="15" fill="none" stroke="#DE1F26" stroke-width="2"/>
+            </g>
+            <g transform="translate(230 178)">
+              <rect x="-74" y="0" width="148" height="44" rx="10" fill="#0B2239"/>
+              <text x="0" y="19" text-anchor="middle" fill="#fff" font-family="'Archivo',sans-serif" font-weight="700" font-size="13">VileTech Informática</text>
+              <text x="0" y="34" text-anchor="middle" fill="#C3D3E4" font-family="'IBM Plex Sans',sans-serif" font-size="11">Barão do Rio Branco, 211</text>
+            </g>
+          </svg>
+
+          <div class="linha-btn" style="margin-top:var(--e5)">
+            <a class="btn btn-s" href="https://www.google.com/maps/search/?api=1&amp;query=Viletech%20Inform%C3%A1tica%20Rua%20Bar%C3%A3o%20do%20Rio%20Branco%20211%20Lavras%20MG" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              Como chegar na loja
+            </a>
+          </div>
+
+          <!-- GALERIA — troque o src pelas fotos reais da loja; o desenho abaixo é o reserva -->
+          <div class="galeria">
+            <figure class="foto-loja">
+              <span class="marca-agua" aria-hidden="true">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#B9C6D6" stroke-width="1.4" focusable="false"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M2 20h20"/></svg>
+              </span>
+              <img src="fotos/bancada.jpg" alt="Bancada de reparos da VileTech Informática com notebook aberto em manutenção" loading="lazy" decoding="async" width="400" height="300" style="position:absolute;inset:0" onerror="this.remove()">
+              <figcaption>A bancada</figcaption>
+            </figure>
+            <figure class="foto-loja">
+              <span class="marca-agua" aria-hidden="true">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#B9C6D6" stroke-width="1.4" focusable="false"><path d="M3 10l9-6 9 6v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-7h6v7"/></svg>
+              </span>
+              <img src="fotos/fachada.jpg" alt="Fachada da loja VileTech Informática na Rua Barão do Rio Branco, 211, Centro de Lavras" loading="lazy" decoding="async" width="400" height="300" style="position:absolute;inset:0" onerror="this.remove()">
+              <figcaption>A fachada</figcaption>
+            </figure>
+            <figure class="foto-loja">
+              <span class="marca-agua" aria-hidden="true">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#B9C6D6" stroke-width="1.4" focusable="false"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+              </span>
+              <img src="fotos/loja.jpg" alt="Interior da loja VileTech Informática com equipamentos e produtos expostos" loading="lazy" decoding="async" width="400" height="300" style="position:absolute;inset:0" onerror="this.remove()">
+              <figcaption>O balcão</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       CONTATO
+       ======================================================================== -->
+  <section class="secao secao--cinza" id="contato" aria-labelledby="tituloContato">
+    <div class="container">
+      <div class="cabeca-secao revela">
+        <p class="selo">Contato</p>
+        <h2 class="h2" id="tituloContato">Conte o que aconteceu com o equipamento</h2>
+        <p class="corpo">Três campos e a conversa começa no WhatsApp com o assunto já preenchido. Se preferir, ligue para a loja ou passe aqui no Centro.</p>
+      </div>
+
+      <div class="duas-colunas">
+        <div class="revela">
+          <form class="form" id="formContato" novalidate>
+            <div class="campo">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Como podemos te chamar" aria-describedby="erroNome">
+              <p class="msg-erro" id="erroNome">Falta preencher seu nome.</p>
+            </div>
+
+            <div class="campo">
+              <label for="zap">WhatsApp</label>
+              <input type="tel" id="zap" name="zap" inputmode="tel" autocomplete="tel" placeholder="(35) 9 9999-9999" aria-describedby="dicaZap erroZap">
+              <p class="dica" id="dicaZap">É por aqui que a gente responde.</p>
+              <p class="msg-erro" id="erroZap">Falta o DDD no número.</p>
+            </div>
+
+            <div class="campo">
+              <label for="oque">O que você precisa</label>
+              <select id="oque" name="oque">
+                <option>Manutenção de notebook</option>
+                <option>Montagem de PC</option>
+                <option>Comprar um equipamento</option>
+                <option>Rede e Wi-Fi</option>
+              </select>
+            </div>
+
+            <button class="btn btn-w" type="submit">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.4 4.5-1.2A10 10 0 1 0 12 2zm5.3 14c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.1-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4 0 .5-.1l.7-.8c.2-.2.3-.2.6-.1l1.7.8c.3.1.5.2.5.4 0 .1 0 .5-.2 1z"/></svg>
+              Chamar no WhatsApp
+            </button>
+            <p class="rodape-form">Sem compromisso. Avaliamos e dizemos o que compensa consertar.</p>
+          </form>
+
+          <div class="sucesso" id="sucesso" role="status" tabindex="-1">
+            <h3>Recebido.</h3>
+            <p>Estamos te chamando no WhatsApp em alguns minutos. Se preferir adiantar, é só tocar no botão verde no canto da tela.</p>
+            <a class="btn btn-claro" id="linkSucesso" href="https://wa.me/553534093030" target="_blank" rel="noopener">Abrir a conversa agora</a>
+          </div>
+        </div>
+
+        <div class="painel-endereco revela" data-atraso="1">
+          <h3 class="h3">Prefere falar direto?</h3>
+          <ul class="dados">
+            <li>
+              <span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" focusable="false"><path d="M6 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L16 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3z"/></svg></span>
+              <span><strong><a href="tel:+553534093030">(35) 3409-3030</a></strong><span>Ligar agora</span></span>
+            </li>
+            <li>
+              <span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" focusable="false"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+              <span><strong>R. Barão do Rio Branco, 211 — Centro</strong><span>Lavras - MG, 37200-208</span></span>
+            </li>
+            <li>
+              <span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+              <span><strong>Seg a sex, 8h às 18h</strong><span>Aberto · Fecha 18:00</span></span>
+            </li>
+            <li>
+              <span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg></span>
+              <span><strong><a href="https://linktr.ee/viletech_informatica" target="_blank" rel="noopener">linktr.ee/viletech_informatica</a></strong><span>Todos os canais da loja</span></span>
+            </li>
+          </ul>
+          <p class="apoio">💻 Assistência técnica em Lavras-MG<br>Notebooks • PCs • Impressoras • Projetores<br>🎮 Videogames • Smartphones</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ==========================================================================
+     RODAPÉ
+     ========================================================================== -->
+<footer class="rodape">
+  <div class="container">
+    <div class="rodape-grade">
+      <div>
+        <div class="marca" style="margin-bottom:var(--e4)">
+          <svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+            <path d="M4 5h11l8 20L15 35z" fill="#DE1F26"/>
+            <path d="M25 5h11L25 35 19.5 21z" fill="#0F6BD4"/>
+          </svg>
+          <span class="marca-txt"><strong>VileTech</strong><span>Informática</span></span>
+        </div>
+        <p>💻 Assistência técnica em Lavras-MG<br>Notebooks • PCs • Impressoras • Projetores<br>🎮 Videogames • Smartphones</p>
+        <p style="margin-top:var(--e4)">Empresa que acolhe a comunidade LGBTQ+</p>
+      </div>
+
+      <div>
+        <h2>Onde estamos</h2>
+        <p>R. Barão do Rio Branco, 211 — Centro<br>Lavras - MG, 37200-208<br>Q272+PV Centro, Lavras - MG</p>
+        <p style="margin-top:var(--e3)">Seg a sex, 8h às 18h<br>Aberto · Fecha 18:00</p>
+        <!-- Rodapé institucional: inclua aqui razão social e CNPJ quando o cliente enviar. -->
+      </div>
+
+      <div>
+        <h2>Fale com a gente</h2>
+        <ul>
+          <li><a href="tel:+553534093030">(35) 3409-3030</a></li>
+          <li><a data-zap="Olá! Estou no site da VileTech." href="https://wa.me/553534093030?text=Ol%C3%A1!%20Estou%20no%20site%20da%20VileTech." target="_blank" rel="noopener">WhatsApp da loja</a></li>
+          <li><a href="https://linktr.ee/viletech_informatica" target="_blank" rel="noopener">linktr.ee/viletech_informatica</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Viletech%20Inform%C3%A1tica%20Rua%20Bar%C3%A3o%20do%20Rio%20Branco%20211%20Lavras%20MG" target="_blank" rel="noopener">Como chegar na loja</a></li>
+        </ul>
+        <h2 style="margin-top:var(--e5)">Seções</h2>
+        <ul>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#avaliacoes">Avaliações</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rodape-fim">
+      <p>© <span id="ano">2026</span> Viletech Informática — Lavras/MG</p>
+      <p>Assistência Técnica de Informática</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ========================= BOTÃO FLUTUANTE ========================= -->
+<div class="flutuante-area" id="areaFlutuante">
+  <span class="balao" id="balao" aria-hidden="true">Fala com a gente</span>
+  <a class="flutuante" id="flutuante" data-zap="Olá! Estou no site da VileTech." href="https://wa.me/553534093030?text=Ol%C3%A1!%20Estou%20no%20site%20da%20VileTech." target="_blank" rel="noopener" aria-label="Falar no WhatsApp com a VileTech Informática">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.4 4.5-1.2A10 10 0 1 0 12 2zm5.3 14c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.1-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4 0 .5-.1l.7-.8c.2-.2.3-.2.6-.1l1.7.8c.3.1.5.2.5.4 0 .1 0 .5-.2 1z"/></svg>
+  </a>
+</div>
+
+<!-- ========================= BARRA FIXA MOBILE ========================= -->
+<nav class="barra-mobile" aria-label="Ações rápidas de contato">
+  <a class="btn btn-w" data-zap="Olá! Estou no site da VileTech." href="https://wa.me/553534093030?text=Ol%C3%A1!%20Estou%20no%20site%20da%20VileTech." target="_blank" rel="noopener">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.4 4.5-1.2A10 10 0 1 0 12 2zm5.3 14c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.1-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4 0 .5-.1l.7-.8c.2-.2.3-.2.6-.1l1.7.8c.3.1.5.2.5.4 0 .1 0 .5-.2 1z"/></svg>
+    WhatsApp
+  </a>
+  <a class="btn btn-s" href="tel:+553534093030" aria-label="Ligar para (35) 3409-3030">Ligar</a>
+</nav>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ======================================================================
+     1. NÚMERO DO WHATSAPP
+     Troque a linha abaixo pelo número real (DDD + número, sem espaços).
+     Todos os links da página são reescritos a partir daqui.
+     ====================================================================== */
+  var NUMERO_WHATSAPP = '553534093030';
+
+  document.querySelectorAll('[data-zap]').forEach(function(el){
+    el.setAttribute('href','https://wa.me/' + NUMERO_WHATSAPP + '?text=' + encodeURIComponent(el.dataset.zap));
+  });
+
+  var semAnimacao = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ======================================================================
+     2. MENU MOBILE
+     ====================================================================== */
+  var abreMenu = document.getElementById('abreMenu');
+  var menu = document.getElementById('menu');
+
+  function fechaMenu(){
+    menu.classList.remove('aberto');
+    abreMenu.setAttribute('aria-expanded','false');
+    abreMenu.setAttribute('aria-label','Abrir menu de navegação');
+  }
+
+  abreMenu.addEventListener('click', function(){
+    var aberto = menu.classList.toggle('aberto');
+    abreMenu.setAttribute('aria-expanded', String(aberto));
+    abreMenu.setAttribute('aria-label', aberto ? 'Fechar menu de navegação' : 'Abrir menu de navegação');
+  });
+
+  menu.addEventListener('click', function(e){
+    if(e.target.tagName === 'A') fechaMenu();
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && menu.classList.contains('aberto')){
+      fechaMenu();
+      abreMenu.focus();
+    }
+  });
+
+  /* ======================================================================
+     3. REVELAR BLOCOS AO ROLAR
+     ====================================================================== */
+  var blocos = document.querySelectorAll('.revela');
+
+  if(semAnimacao || !('IntersectionObserver' in window)){
+    blocos.forEach(function(b){ b.classList.add('dentro'); });
+  } else {
+    var obsRevela = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(entrada){
+        if(entrada.isIntersecting){
+          entrada.target.classList.add('dentro');
+          obsRevela.unobserve(entrada.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+
+    blocos.forEach(function(b){ obsRevela.observe(b); });
+  }
+
+  /* ======================================================================
+     4. GRÁFICOS: medidor, barras e contadores
+     ====================================================================== */
+  function contaNumero(el){
+    var alvoTexto = el.dataset.conta;
+    var decimal = alvoTexto.indexOf(',') > -1;
+    var alvo = parseFloat(alvoTexto.replace(',','.'));
+    var inicio = null;
+    var duracao = 1200;
+
+    function passo(agora){
+      if(inicio === null) inicio = agora;
+      var p = Math.min((agora - inicio) / duracao, 1);
+      var suave = 1 - Math.pow(1 - p, 3);
+      var valor = alvo * suave;
+      el.textContent = decimal ? valor.toFixed(1).replace('.',',') : Math.round(valor).toString();
+      if(p < 1) requestAnimationFrame(passo);
+    }
+    requestAnimationFrame(passo);
+  }
+
+  var painelNotas = document.getElementById('painelNotas');
+  var numeros = document.querySelectorAll('[data-conta]');
+  var fluxo = document.getElementById('fluxo');
+
+  function ativaGraficos(){
+    if(painelNotas) painelNotas.classList.add('animar');
+    if(!semAnimacao) numeros.forEach(contaNumero);
+  }
+
+  if(semAnimacao || !('IntersectionObserver' in window)){
+    if(painelNotas) painelNotas.classList.add('animar');
+    if(fluxo) fluxo.classList.add('animar');
+  } else {
+    var obsGrafico = new IntersectionObserver(function(entradas){
+      entradas.forEach(function(entrada){
+        if(!entrada.isIntersecting) return;
+        if(entrada.target === painelNotas) ativaGraficos();
+        else entrada.target.classList.add('animar');
+        obsGrafico.unobserve(entrada.target);
+      });
+    }, { threshold: 0.3 });
+
+    if(painelNotas) obsGrafico.observe(painelNotas);
+    if(fluxo) obsGrafico.observe(fluxo);
+  }
+
+  /* ======================================================================
+     5. BOTÃO FLUTUANTE — aparece após 25% de rolagem,
+        com balão que some em 6 segundos
+     ====================================================================== */
+  var area = document.getElementById('areaFlutuante');
+  var balao = document.getElementById('balao');
+  var jaMostrou = false;
+
+  function checaRolagem(){
+    var altura = document.documentElement.scrollHeight - window.innerHeight;
+    var progresso = altura > 0 ? window.scrollY / altura : 0;
+    var visivel = progresso > 0.25;
+    area.classList.toggle('visivel', visivel);
+
+    if(visivel && !jaMostrou){
+      jaMostrou = true;
+      balao.classList.add('visivel');
+      setTimeout(function(){ balao.classList.remove('visivel'); }, 6000);
+    }
+  }
+
+  window.addEventListener('scroll', checaRolagem, { passive: true });
+  window.addEventListener('resize', checaRolagem, { passive: true });
+  checaRolagem();
+
+  /* ======================================================================
+     6. FORMULÁRIO — validação e abertura do WhatsApp com o assunto pronto
+     ====================================================================== */
+  var form = document.getElementById('formContato');
+  var sucesso = document.getElementById('sucesso');
+  var linkSucesso = document.getElementById('linkSucesso');
+  var nome = document.getElementById('nome');
+  var zap = document.getElementById('zap');
+  var oque = document.getElementById('oque');
+
+  function marcaErro(campo, temErro){
+    campo.closest('.campo').classList.toggle('erro', temErro);
+    campo.setAttribute('aria-invalid', temErro ? 'true' : 'false');
+  }
+
+  [nome, zap].forEach(function(campo){
+    campo.addEventListener('input', function(){
+      if(campo.closest('.campo').classList.contains('erro')) marcaErro(campo, false);
+    });
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    var nomeVazio = nome.value.trim() === '';
+    var digitos = zap.value.replace(/\D/g,'');
+    var zapInvalido = digitos.length < 10;
+
+    marcaErro(nome, nomeVazio);
+    marcaErro(zap, zapInvalido);
+
+    if(nomeVazio){ nome.focus(); return; }
+    if(zapInvalido){ zap.focus(); return; }
+
+    var mensagem = 'Olá! Sou ' + nome.value.trim() +
+                   '. Quero orçamento para: ' + oque.value +
+                   '. Meu WhatsApp: ' + zap.value.trim();
+    var link = 'https://wa.me/' + NUMERO_WHATSAPP + '?text=' + encodeURIComponent(mensagem);
+
+    linkSucesso.setAttribute('href', link);
+    form.style.display = 'none';
+    sucesso.classList.add('visivel');
+    sucesso.focus();
+
+    window.open(link, '_blank', 'noopener');
+  });
+
+  /* ======================================================================
+     7. ANO NO RODAPÉ
+     ====================================================================== */
+  document.getElementById('ano').textContent = new Date().getFullYear();
+})();
+</script>
+
+</body>
+</html>

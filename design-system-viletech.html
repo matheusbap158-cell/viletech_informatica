@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design System — VileTech Informática</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul-placa:#0B2239;
+  --azul-fumaca:#123A5F;
+  --azul-sinal:#0F6BD4;
+  --vermelho-vile:#DE1F26;
+  --vermelho-forte:#B8151B;
+  --verde-whats:#0E7C41;
+  --verde-whats-brilho:#25D366;
+  --ambar:#F0A020;
+  --branco-bancada:#FFFFFF;
+  --cinza-antiestatico:#F1F4F8;
+  --grafite:#46586B;
+  --borda:#DCE3EC;
+  --borda-forte:#B9C6D6;
+  --desabilitado:#8697A8;
+
+  --fonte-titulo:'Archivo',system-ui,sans-serif;
+  --fonte-corpo:'IBM Plex Sans',system-ui,sans-serif;
+
+  --r-selo:6px; --r-acao:10px; --r-card:14px; --r-painel:20px; --r-total:999px;
+
+  --s1:0 1px 2px rgba(11,34,57,.06),0 2px 8px rgba(11,34,57,.06);
+  --s2:0 10px 26px rgba(11,34,57,.10);
+  --s3:0 16px 40px rgba(11,34,57,.16);
+  --s-acao:0 8px 20px rgba(222,31,38,.28);
+  --s-produto:0 24px 60px rgba(15,107,212,.22);
+
+  --e1:4px; --e2:8px; --e3:12px; --e4:16px; --e5:24px;
+  --e6:32px; --e7:48px; --e8:64px; --e9:96px; --e10:128px;
+  --transicao:180ms cubic-bezier(.2,.7,.3,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  font-family:var(--fonte-corpo);
+  color:var(--azul-placa);
+  background:var(--branco-bancada);
+  font-size:16px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--fonte-titulo);line-height:1.15;letter-spacing:-.015em}
+body.alt-titulo{--fonte-titulo:'Montserrat',system-ui,sans-serif}
+a{color:var(--azul-sinal)}
+
+/* ---------- topo ---------- */
+.topo{
+  position:sticky;top:0;z-index:60;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--borda);
+}
+.topo-in{
+  max-width:1240px;margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;gap:var(--e4);flex-wrap:wrap;
+}
+.marca{display:flex;align-items:center;gap:12px;margin-right:auto}
+.marca-txt strong{font-family:var(--fonte-titulo);font-weight:800;font-size:18px;letter-spacing:-.02em;display:block;line-height:1.1}
+.marca-txt span{font-size:12px;color:var(--grafite);letter-spacing:.18em}
+.topo .acoes{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ---------- layout ---------- */
+.casca{max-width:1240px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:210px 1fr;gap:56px;align-items:start}
+.indice{position:sticky;top:96px;padding:32px 0;display:flex;flex-direction:column;gap:2px}
+.indice a{
+  font-size:14px;color:var(--grafite);text-decoration:none;
+  padding:8px 12px;border-left:2px solid var(--borda);
+  transition:var(--transicao);
+}
+.indice a:hover{color:var(--azul-placa);border-left-color:var(--azul-sinal);background:var(--cinza-antiestatico)}
+.indice a.ativo{color:var(--azul-placa);font-weight:600;border-left-color:var(--vermelho-vile)}
+.conteudo{padding:32px 0 120px;min-width:0}
+
+section{padding:48px 0;border-top:1px solid var(--borda)}
+section:first-child{border-top:none;padding-top:16px}
+.sec-cabeca{margin-bottom:var(--e6)}
+.sec-cabeca h2{font-size:clamp(1.6rem,3vw,2.25rem);font-weight:800}
+.sec-cabeca h2 em{font-style:normal;color:var(--vermelho-vile)}
+.sec-cabeca p{color:var(--grafite);max-width:62ch;margin-top:10px}
+h3.bloco{font-size:19px;font-weight:700;margin:var(--e6) 0 var(--e4)}
+h3.bloco:first-of-type{margin-top:0}
+
+/* ---------- hero ---------- */
+.abertura{
+  background:linear-gradient(160deg,var(--azul-placa),var(--azul-fumaca));
+  color:#fff;border-radius:var(--r-painel);padding:44px 40px;margin-bottom:8px;
+  position:relative;overflow:hidden;
+}
+.abertura::after{
+  content:"";position:absolute;right:-60px;top:-60px;width:280px;height:280px;
+  background:radial-gradient(circle,rgba(15,107,212,.55),transparent 68%);
+}
+.abertura h1{font-size:clamp(1.9rem,4vw,2.85rem);font-weight:800;letter-spacing:-.025em;max-width:16ch;position:relative}
+.abertura h1 span{display:block;color:#FF6B70}
+.abertura p{margin-top:16px;max-width:56ch;color:#C3D3E4;position:relative}
+.selos{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px;position:relative}
+.selo-topo{
+  font-size:13px;font-weight:600;letter-spacing:.03em;
+  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);
+  padding:7px 14px;border-radius:var(--r-total);
+}
+
+/* ---------- botões ---------- */
+.btn{
+  font-family:var(--fonte-corpo);font-size:16px;font-weight:600;letter-spacing:.01em;
+  height:52px;padding:0 28px;border-radius:var(--r-acao);border:none;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  cursor:pointer;transition:var(--transicao);text-decoration:none;
+}
+.btn:focus-visible{outline:3px solid var(--azul-sinal);outline-offset:2px}
+.btn-p{background:var(--vermelho-vile);color:#fff}
+.btn-p:hover{background:var(--vermelho-forte);transform:translateY(-1px);box-shadow:var(--s-acao)}
+.btn-p:active{transform:translateY(0);box-shadow:none}
+.btn-w{background:var(--verde-whats);color:#fff}
+.btn-w:hover{background:#0B6836;transform:translateY(-1px);box-shadow:0 8px 20px rgba(14,124,65,.28)}
+.btn-s{background:transparent;color:var(--azul-placa);border:1.5px solid var(--azul-placa)}
+.btn-s:hover{background:var(--azul-placa);color:#fff}
+.btn-t{background:transparent;color:var(--azul-sinal);padding:0 6px;height:auto}
+.btn-t:hover{text-decoration:underline;text-underline-offset:4px}
+.btn-claro{background:#fff;color:var(--azul-placa)}
+.btn-claro:hover{background:#E8EFF7}
+.btn[disabled]{background:var(--borda);color:var(--desabilitado);cursor:not-allowed;transform:none;box-shadow:none}
+.btn-mini{height:38px;padding:0 16px;font-size:14px;border-radius:8px}
+
+/* ---------- cores ---------- */
+.paleta{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:var(--e4)}
+.cor{
+  border:1px solid var(--borda);border-radius:var(--r-card);overflow:hidden;
+  background:#fff;cursor:pointer;text-align:left;font:inherit;color:inherit;
+  transition:var(--transicao);
+}
+.cor:hover{box-shadow:var(--s2);border-color:var(--azul-sinal);transform:translateY(-2px)}
+.cor:focus-visible{outline:3px solid var(--azul-sinal);outline-offset:2px}
+.cor .amostra{height:92px;display:flex;align-items:flex-end;padding:10px;position:relative}
+.cor .contraste{font-size:11px;font-weight:600;background:rgba(255,255,255,.9);color:var(--azul-placa);padding:3px 8px;border-radius:var(--r-total)}
+.cor .info{padding:12px 14px 14px}
+.cor .nome{font-weight:600;font-size:15px}
+.cor .hex{font-size:13px;color:var(--grafite);letter-spacing:.04em;margin-top:2px}
+.cor .papel{font-size:12.5px;color:var(--grafite);margin-top:8px;line-height:1.45}
+
+.proporcao{display:flex;height:56px;border-radius:var(--r-acao);overflow:hidden;margin-top:var(--e4);border:1px solid var(--borda)}
+.proporcao div{display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+
+/* ---------- tabela ---------- */
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--borda);vertical-align:top}
+th{font-weight:600;font-size:13px;color:var(--grafite);background:var(--cinza-antiestatico)}
+td code{font-size:13px}
+.tab-envolve{border:1px solid var(--borda);border-radius:var(--r-card);overflow:hidden}
+tr:last-child td{border-bottom:none}
+
+/* ---------- tipografia ---------- */
+.espec{border:1px solid var(--borda);border-radius:var(--r-card);padding:var(--e5);margin-bottom:var(--e3);display:grid;grid-template-columns:1fr auto;gap:var(--e4);align-items:center}
+.espec .meta{font-size:12.5px;color:var(--grafite);text-align:right;white-space:nowrap;line-height:1.5}
+.d1{font-family:var(--fonte-titulo);font-size:clamp(2.1rem,5vw,3.5rem);font-weight:800;letter-spacing:-.02em;line-height:1.05}
+.d2{font-family:var(--fonte-titulo);font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:700;letter-spacing:-.015em;line-height:1.15}
+.d3{font-family:var(--fonte-titulo);font-size:1.75rem;font-weight:700;line-height:1.25}
+.d4{font-family:var(--fonte-titulo);font-size:1.25rem;font-weight:600;line-height:1.3}
+.dlead{font-size:1.1875rem;line-height:1.55;color:var(--grafite)}
+.dcorpo{font-size:1rem;line-height:1.65;max-width:68ch}
+.dapoio{font-size:.875rem;color:var(--grafite)}
+.dselo{font-size:.8125rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--vermelho-vile)}
+.linha-vermelha{color:var(--vermelho-vile)}
+
+/* ---------- componentes ---------- */
+.grade{display:grid;gap:var(--e5)}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.linha-btn{display:flex;gap:var(--e3);flex-wrap:wrap;align-items:center}
+
+.card{background:#fff;border:1px solid var(--borda);border-radius:var(--r-card);padding:28px;transition:var(--transicao);box-shadow:var(--s1)}
+.card:hover{border-color:var(--azul-sinal);box-shadow:var(--s2)}
+.card .icone{width:44px;height:44px;border-radius:12px;background:var(--cinza-antiestatico);color:var(--azul-sinal);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.card h4{font-size:20px;font-weight:600;margin-bottom:8px}
+.card p{font-size:15px;color:var(--grafite)}
+.card .rodape{margin-top:18px}
+
+.card-prod{background:#fff;border:1px solid var(--borda);border-radius:var(--r-card);padding:16px;box-shadow:var(--s1)}
+.card-prod .foto{background:var(--cinza-antiestatico);border-radius:12px;height:128px;display:flex;align-items:center;justify-content:center;color:var(--desabilitado);font-size:13px}
+.card-prod h4{font-size:16px;font-weight:600;margin:14px 0 6px}
+.preco{display:inline-block;background:var(--vermelho-vile);color:#fff;font-size:13px;font-weight:600;letter-spacing:.04em;padding:5px 10px;border-radius:var(--r-selo)}
+.card-prod .btn{width:100%;margin-top:14px;height:44px;font-size:15px}
+
+.card-prova{background:var(--cinza-antiestatico);border-radius:var(--r-card);border-left:3px solid var(--vermelho-vile);padding:24px}
+.estrelas{color:var(--ambar);font-size:15px;letter-spacing:2px}
+.card-prova p{margin:10px 0 14px;font-size:15.5px}
+.card-prova .quem{font-size:14px;color:var(--grafite)}
+
+.confianca{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:var(--e5);border-top:1px solid var(--borda);border-bottom:1px solid var(--borda);padding:var(--e5) 0}
+.confianca div strong{display:block;font-size:15px;font-weight:600;margin-bottom:2px}
+.confianca div span{font-size:13px;color:var(--grafite)}
+.confianca .ic{color:var(--azul-sinal);margin-bottom:8px;display:block}
+
+/* ---------- formulário ---------- */
+.form{background:var(--cinza-antiestatico);border-radius:var(--r-painel);padding:32px;max-width:520px}
+.campo{margin-bottom:var(--e4)}
+.campo label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+.campo input,.campo select{
+  width:100%;height:52px;padding:0 16px;font:inherit;font-size:16px;
+  background:#fff;border:1.5px solid var(--borda);border-radius:var(--r-acao);
+  color:var(--azul-placa);transition:var(--transicao);
+}
+.campo select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--grafite) 50%),linear-gradient(135deg,var(--grafite) 50%,transparent 50%);background-position:calc(100% - 20px) 23px,calc(100% - 14px) 23px;background-size:6px 6px;background-repeat:no-repeat}
+.campo input::placeholder{color:var(--desabilitado)}
+.campo input:focus,.campo select:focus{outline:none;border-color:var(--azul-sinal);box-shadow:0 0 0 4px rgba(15,107,212,.16)}
+.campo .dica{font-size:13px;color:var(--grafite);margin-top:6px}
+.campo.erro input{border-color:var(--vermelho-vile)}
+.campo .msg-erro{display:none;font-size:13px;color:var(--vermelho-vile);margin-top:6px}
+.campo.erro .msg-erro{display:block}
+.form .btn{width:100%}
+.form .rodape-form{font-size:13px;color:var(--grafite);margin-top:12px;text-align:center}
+.sucesso{background:var(--azul-placa);color:#fff;border-radius:var(--r-painel);padding:32px;max-width:520px;display:none}
+.sucesso h4{font-size:20px;margin-bottom:8px}
+.sucesso p{color:#C3D3E4;font-size:15px}
+
+/* ---------- playground ---------- */
+.brinca{display:grid;grid-template-columns:260px 1fr;gap:var(--e6);align-items:center;border:1px solid var(--borda);border-radius:var(--r-card);padding:var(--e5)}
+.controle{margin-bottom:var(--e5)}
+.controle label{display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:8px}
+.controle label span{color:var(--azul-sinal);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--azul-sinal)}
+.opcoes{display:flex;gap:6px;flex-wrap:wrap}
+.opcao{font:inherit;font-size:13px;font-weight:600;padding:7px 12px;border-radius:8px;border:1.5px solid var(--borda);background:#fff;color:var(--grafite);cursor:pointer;transition:var(--transicao)}
+.opcao:hover{border-color:var(--azul-sinal);color:var(--azul-placa)}
+.opcao[aria-pressed=true]{background:var(--azul-placa);border-color:var(--azul-placa);color:#fff}
+.palco{display:flex;align-items:center;justify-content:center;min-height:220px;background:var(--cinza-antiestatico);border-radius:var(--r-card);padding:24px}
+.amostra-caixa{background:#fff;padding:26px;width:100%;max-width:330px;transition:var(--transicao)}
+.amostra-caixa h4{font-size:18px;font-weight:600;margin-bottom:6px}
+.amostra-caixa p{font-size:14px;color:var(--grafite)}
+.amostra-caixa .btn{margin-top:16px;height:44px;font-size:15px}
+
+.escala-espaco{display:flex;gap:var(--e3);flex-wrap:wrap;align-items:flex-end}
+.esp{text-align:center}
+.esp .barra{background:var(--azul-sinal);border-radius:4px 4px 0 0;width:34px;opacity:.85}
+.esp span{display:block;font-size:12px;color:var(--grafite);margin-top:6px}
+
+.sombras{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--e5)}
+.sombra-item{background:#fff;border-radius:var(--r-card);padding:22px;text-align:center;font-size:14px;font-weight:600}
+.sombra-item small{display:block;font-weight:400;color:var(--grafite);font-size:12.5px;margin-top:4px}
+
+/* ---------- regras ---------- */
+.regras{display:grid;gap:var(--e3)}
+.regra{display:flex;gap:14px;padding:16px 18px;border-radius:var(--r-acao);background:var(--cinza-antiestatico);font-size:15px}
+.regra b{font-family:var(--fonte-titulo);font-size:15px}
+.marca-sim{color:var(--verde-whats);font-weight:700}
+.marca-nao{color:var(--vermelho-vile);font-weight:700}
+
+/* ---------- conversão ---------- */
+.mapa-cta{display:grid;gap:var(--e3)}
+.etapa{display:grid;grid-template-columns:150px 1fr;gap:var(--e4);align-items:center;padding:16px 18px;border:1px solid var(--borda);border-radius:var(--r-card)}
+.etapa .onde{font-weight:600;font-size:14px}
+.etapa .msg{font-size:14px;color:var(--grafite);font-style:italic}
+.flutuante{
+  position:fixed;right:24px;bottom:24px;width:60px;height:60px;border-radius:var(--r-total);
+  background:var(--verde-whats);color:#fff;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px rgba(11,34,57,.28);
+  z-index:70;transition:var(--transicao);opacity:0;pointer-events:none;transform:translateY(10px);
+}
+.flutuante.visivel{opacity:1;pointer-events:auto;transform:translateY(0)}
+.flutuante:hover{background:#0B6836}
+.flutuante:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+/* ---------- fecho ---------- */
+.fecho{background:linear-gradient(160deg,var(--azul-placa),var(--azul-fumaca));color:#fff;border-radius:var(--r-painel);padding:40px}
+.fecho h3{font-size:22px;margin-bottom:16px}
+.fecho p{color:#C3D3E4;max-width:70ch;margin-bottom:10px;font-size:15.5px}
+.fecho p:last-child{margin-bottom:0}
+
+/* ---------- aviso copiado ---------- */
+.aviso{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);
+  background:var(--azul-placa);color:#fff;padding:12px 20px;border-radius:var(--r-acao);
+  font-size:14px;font-weight:500;box-shadow:var(--s3);opacity:0;pointer-events:none;
+  transition:var(--transicao);z-index:90;
+}
+.aviso.visivel{opacity:1;transform:translate(-50%,0)}
+
+code{font-family:'IBM Plex Mono',ui-monospace,monospace;background:var(--cinza-antiestatico);padding:2px 6px;border-radius:5px;font-size:13.5px}
+
+@media (max-width:960px){
+  .casca{grid-template-columns:1fr;gap:0;padding:0 16px}
+  .indice{display:none}
+  .brinca{grid-template-columns:1fr}
+  .espec{grid-template-columns:1fr}
+  .espec .meta{text-align:left}
+  .etapa{grid-template-columns:1fr;gap:6px}
+  .abertura{padding:32px 24px}
+  section{padding:36px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="topo-in">
+    <div class="marca">
+      <svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true">
+        <path d="M4 5h11l8 20L15 35z" fill="#DE1F26"/>
+        <path d="M25 5h11L25 35 19.5 21z" fill="#0F6BD4"/>
+      </svg>
+      <span class="marca-txt"><strong>VileTech</strong><span>Informática</span></span>
+    </div>
+    <div class="acoes">
+      <button class="btn btn-s btn-mini" id="trocaFonte" aria-pressed="false">Testar títulos em Montserrat</button>
+      <button class="btn btn-p btn-mini" id="copiaTudo">Copiar todos os tokens</button>
+    </div>
+  </div>
+</header>
+
+<div class="casca">
+  <nav class="indice" aria-label="Seções do design system">
+    <a href="#cores">Cores</a>
+    <a href="#tipografia">Tipografia</a>
+    <a href="#botoes">Botões</a>
+    <a href="#formulario">Formulário</a>
+    <a href="#cards">Cards</a>
+    <a href="#estetica">Estética</a>
+    <a href="#autoridade">Autoridade</a>
+    <a href="#conversao">Conversão</a>
+    <a href="#tom">Tom visual</a>
+  </nav>
+
+  <main class="conteudo">
+
+    <div class="abertura">
+      <h1>Sistema visual da VileTech <span>feito para virar conversa.</span></h1>
+      <p>Base de cores, tipografia e componentes extraída da identidade atual da loja e organizada para uma landing page com um objetivo só: provar competência técnica e levar o visitante ao WhatsApp.</p>
+      <div class="selos">
+        <span class="selo-topo">Clique em qualquer cor para copiar o hex</span>
+        <span class="selo-topo">Componentes funcionais</span>
+        <span class="selo-topo">Contraste verificado em AA</span>
+      </div>
+    </div>
+
+    <!-- ============ CORES ============ -->
+    <section id="cores">
+      <div class="sec-cabeca">
+        <h2>Cores</h2>
+        <p>Três famílias. O branco domina, o azul-marinho carrega a autoridade e o vermelho aparece pouco — só onde é para clicar. Clique num cartão para copiar o código.</p>
+      </div>
+
+      <h3 class="bloco">Paleta principal</h3>
+      <div class="paleta" id="paletaPrincipal"></div>
+
+      <h3 class="bloco">Paleta secundária</h3>
+      <div class="paleta" id="paletaSecundaria"></div>
+
+      <h3 class="bloco">Paleta de suporte</h3>
+      <div class="paleta" id="paletaSuporte"></div>
+
+      <h3 class="bloco">Proporção na página</h3>
+      <div class="proporcao">
+        <div style="flex:60;background:#fff;color:#0B2239;border-right:1px solid #DCE3EC">60% branco e cinza claro</div>
+        <div style="flex:30;background:#0B2239;color:#fff">30% navy</div>
+        <div style="flex:10;background:#DE1F26;color:#fff">10% vermelho</div>
+      </div>
+
+      <h3 class="bloco">Regras de uso</h3>
+      <div class="regras">
+        <div class="regra"><span class="marca-sim">Sim</span><span><b>Um botão vermelho por dobra.</b> Os demais são contorno navy. Dois vermelhos na mesma tela anulam um ao outro.</span></div>
+        <div class="regra"><span class="marca-nao">Não</span><span><b>Vermelho em texto corrido.</b> Só botão, preço, selo ou uma linha inteira de título.</span></div>
+        <div class="regra"><span class="marca-sim">Sim</span><span><b>Azul elétrico como detalhe.</b> Ícone, link e foco de campo. Como fundo grande ele briga com o logo.</span></div>
+        <div class="regra"><span class="marca-sim">Sim</span><span><b>Verde é só do WhatsApp.</b> Nenhum outro elemento usa verde, para o visitante associar verde a conversa.</span></div>
+        <div class="regra"><span class="marca-nao">Não</span><span><b>Preto puro em sombra ou texto.</b> Sobre paleta azul ele suja a página. Use <code>#0B2239</code>.</span></div>
+      </div>
+    </section>
+
+    <!-- ============ TIPOGRAFIA ============ -->
+    <section id="tipografia">
+      <div class="sec-cabeca">
+        <h2>Tipografia</h2>
+        <p><strong>Archivo</strong> nos títulos, próxima do bold dos posts atuais. <strong>IBM Plex Sans</strong> no corpo, com desenho técnico que reforça a ideia de engenharia. Use o botão do topo para comparar com Montserrat.</p>
+      </div>
+
+      <div class="espec">
+        <div class="d1">Seu computador<br><span class="linha-vermelha">volta hoje mesmo.</span></div>
+        <div class="meta">H1 · 56 / 34px<br>peso 800 · entrelinha 1.05<br>tracking -0.02em</div>
+      </div>
+      <div class="espec">
+        <div class="d2">Manutenção com diagnóstico gratuito</div>
+        <div class="meta">H2 · 40 / 27px<br>peso 700 · entrelinha 1.15</div>
+      </div>
+      <div class="espec">
+        <div class="d3">Formatação e backup</div>
+        <div class="meta">H3 · 28 / 22px<br>peso 700 · entrelinha 1.25</div>
+      </div>
+      <div class="espec">
+        <div class="d4">Troca de tela de notebook</div>
+        <div class="meta">H4 · 20 / 18px<br>peso 600</div>
+      </div>
+      <div class="espec">
+        <div class="dlead">Traga o equipamento na loja ou chame no WhatsApp: a gente avalia e diz o que compensa consertar.</div>
+        <div class="meta">Lead · 19 / 17px<br>peso 400 · entrelinha 1.55</div>
+      </div>
+      <div class="espec">
+        <div class="dcorpo">Atendemos notebooks, desktops e periféricos das principais marcas. O diagnóstico sai no mesmo dia e o orçamento vai por escrito antes de qualquer serviço começar.</div>
+        <div class="meta">Corpo · 16px<br>entrelinha 1.65 · máx 68 caracteres</div>
+      </div>
+      <div class="espec">
+        <div class="dapoio">Rua exemplo, 000 — Centro, Lavras/MG · Seg a sex, 8h às 18h</div>
+        <div class="meta">Apoio · 14px<br>cor #46586B</div>
+      </div>
+      <div class="espec">
+        <div><span class="dselo">A partir de R$ 555</span></div>
+        <div class="meta">Selo · 13px · peso 600<br>caixa alta permitida aqui</div>
+      </div>
+
+      <h3 class="bloco">Regras de escrita visual</h3>
+      <div class="regras">
+        <div class="regra"><span class="marca-sim">Sim</span><span><b>Título bicolor por linha.</b> Linha um em navy, linha dois em vermelho — como já é feito nos posts.</span></div>
+        <div class="regra"><span class="marca-nao">Não</span><span><b>Colorir uma palavra solta no meio da frase.</b> Vira ruído e enfraquece as duas cores.</span></div>
+        <div class="regra"><span class="marca-nao">Não</span><span><b>Título inteiro em caixa alta.</b> Derruba a leitura e a sensação de seriedade técnica.</span></div>
+        <div class="regra"><span class="marca-sim">Sim</span><span><b>Número grande é argumento.</b> "12 anos", "48h", "4,9 no Google" em tamanho de H2, navy, unidade menor ao lado.</span></div>
+      </div>
+    </section>
+
+    <!-- ============ BOTÕES ============ -->
+    <section id="botoes">
+      <div class="sec-cabeca">
+        <h2>Botões</h2>
+        <p>Altura 52px, raio 10px, peso 600. Passe o mouse e navegue por Tab para ver os estados reais — o anel de foco azul é obrigatório e não é decorativo.</p>
+      </div>
+
+      <h3 class="bloco">Variantes</h3>
+      <div class="linha-btn">
+        <button class="btn btn-p">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.4 4.5-1.2A10 10 0 1 0 12 2zm5.3 14c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.1-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4 0 .5-.1l.7-.8c.2-.2.3-.2.6-.1l1.7.8c.3.1.5.2.5.4 0 .1 0 .5-.2 1z"/></svg>
+          Falar no WhatsApp
+        </button>
+        <button class="btn btn-s">Ver os serviços</button>
+        <button class="btn btn-t">Como chegar na loja</button>
+        <button class="btn btn-p" disabled>Enviando</button>
+      </div>
+
+      <h3 class="bloco">Botão de WhatsApp e botão sobre fundo escuro</h3>
+      <div class="linha-btn">
+        <button class="btn btn-w">Chamar no WhatsApp</button>
+        <span style="background:var(--azul-placa);padding:16px;border-radius:var(--r-card);display:inline-block">
+          <button class="btn btn-claro">Pedir orçamento</button>
+        </span>
+      </div>
+
+      <h3 class="bloco">Especificação</h3>
+      <div class="tab-envolve">
+        <table>
+          <tr><th>Estado</th><th>O que muda</th></tr>
+          <tr><td>Repouso</td><td>Fundo <code>#DE1F26</code>, texto branco 600, raio 10px, sem sombra</td></tr>
+          <tr><td>Hover</td><td>Fundo <code>#B8151B</code>, sobe 1px, sombra <code>0 8px 20px rgba(222,31,38,.28)</code></td></tr>
+          <tr><td>Ativo</td><td>Volta para a posição original e perde a sombra</td></tr>
+          <tr><td>Foco por teclado</td><td>Contorno de 3px em <code>#0F6BD4</code> com 2px de afastamento</td></tr>
+          <tr><td>Desabilitado</td><td>Fundo <code>#DCE3EC</code>, texto <code>#8697A8</code>, cursor bloqueado</td></tr>
+        </table>
+      </div>
+      <p style="margin-top:16px;font-size:14.5px;color:var(--grafite)">O texto do botão diz o que acontece: "Falar no WhatsApp", "Pedir orçamento do meu notebook". Nunca "Enviar", "Saiba mais" ou seta no fim da frase.</p>
+    </section>
+
+    <!-- ============ FORMULÁRIO ============ -->
+    <section id="formulario">
+      <div class="sec-cabeca">
+        <h2>Formulário</h2>
+        <p>Quatro campos, no máximo. Cada campo a mais derruba a taxa de envio — e numa página de WhatsApp, e-mail é campo morto. Tente enviar vazio para ver o estado de erro.</p>
+      </div>
+
+      <div class="grade g2">
+        <div>
+          <div class="form" id="formDemo">
+            <div class="campo">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" placeholder="Como podemos te chamar">
+              <p class="msg-erro">Falta preencher seu nome.</p>
+            </div>
+            <div class="campo">
+              <label for="zap">WhatsApp</label>
+              <input type="tel" id="zap" inputmode="tel" placeholder="(35) 9 9999-9999">
+              <p class="dica">É por aqui que a gente responde.</p>
+              <p class="msg-erro">Falta o DDD no número.</p>
+            </div>
+            <div class="campo">
+              <label for="oque">O que você precisa</label>
+              <select id="oque">
+                <option>Manutenção de notebook</option>
+                <option>Montagem de PC</option>
+                <option>Comprar um equipamento</option>
+                <option>Rede e Wi-Fi</option>
+              </select>
+            </div>
+            <button class="btn btn-w" id="enviaDemo">Chamar no WhatsApp</button>
+            <p class="rodape-form">Sem compromisso. Avaliamos e dizemos o que compensa consertar.</p>
+          </div>
+          <div class="sucesso" id="sucessoDemo">
+            <h4>Recebido.</h4>
+            <p>Estamos te chamando no WhatsApp em alguns minutos. Se preferir adiantar, é só tocar no botão verde no canto da tela.</p>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="bloco">Regras do campo</h3>
+          <div class="regras">
+            <div class="regra"><span class="marca-sim">Sim</span><span><b>Rótulo acima do campo</b>, 14px peso 600. Placeholder não substitui rótulo — ele some quando a pessoa digita.</span></div>
+            <div class="regra"><span class="marca-sim">Sim</span><span><b>Texto de 16px no input.</b> Abaixo disso o iPhone dá zoom ao focar e quebra o layout.</span></div>
+            <div class="regra"><span class="marca-sim">Sim</span><span><b>Erro diz o que corrigir.</b> "Falta o DDD no número", nunca "Campo inválido".</span></div>
+            <div class="regra"><span class="marca-sim">Sim</span><span><b>Sucesso mostra o próximo passo.</b> O formulário some e dá lugar ao que vai acontecer agora.</span></div>
+            <div class="regra"><span class="marca-nao">Não</span><span><b>Campo de e-mail e "mensagem".</b> Encompridam o formulário e não mudam o atendimento.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CARDS ============ -->
+    <section id="cards">
+      <div class="sec-cabeca">
+        <h2>Cards</h2>
+        <p>Quatro tipos, casca parecida e função diferente. A borda em repouso é discreta; o azul elétrico só aparece quando o card responde ao mouse.</p>
+      </div>
+
+      <h3 class="bloco">Card de serviço</h3>
+      <div class="grade g3">
+        <div class="card">
+          <div class="icone"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M2 20h20"/></svg></div>
+          <h4>Manutenção de notebook</h4>
+          <p>Limpeza, troca de tela, teclado e bateria. Diagnóstico no mesmo dia.</p>
+          <div class="rodape"><button class="btn btn-t">Falar sobre meu notebook</button></div>
+        </div>
+        <div class="card">
+          <div class="icone"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M5 12.5V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6.5"/><path d="M3 17h18M9 21h6"/></svg></div>
+          <h4>Montagem de PC</h4>
+          <p>Configuração escolhida com você, montada e testada antes de sair da loja.</p>
+          <div class="rodape"><button class="btn btn-t">Montar minha máquina</button></div>
+        </div>
+        <div class="card">
+          <div class="icone"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M2 9a15 15 0 0 1 20 0M5 13a10 10 0 0 1 14 0M8.5 16.5a5 5 0 0 1 7 0"/><circle cx="12" cy="20" r="1"/></svg></div>
+          <h4>Rede e Wi-Fi</h4>
+          <p>Roteador certo para o tamanho da casa, instalado e com sinal medido.</p>
+          <div class="rodape"><button class="btn btn-t">Resolver meu sinal</button></div>
+        </div>
+      </div>
+
+      <h3 class="bloco">Card de produto e card de prova social</h3>
+      <div class="grade g2">
+        <div class="card-prod">
+          <div class="foto">área da foto · fundo #F1F4F8</div>
+          <h4>Roteador Gigabit Dual Band AC1200</h4>
+          <span class="preco">R$ 555,00</span>
+          <button class="btn btn-p">Falar sobre este item</button>
+        </div>
+        <div class="card-prova">
+          <div class="estrelas" aria-label="5 de 5">★★★★★</div>
+          <p>Levei o notebook achando que não tinha jeito. Voltou funcionando no mesmo dia e ainda me explicaram o que tinha acontecido.</p>
+          <div class="quem">Marina R. — Centro, Lavras</div>
+        </div>
+      </div>
+
+      <h3 class="bloco">Faixa de confiança</h3>
+      <div class="confianca">
+        <div><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><strong>Loja física em Lavras</strong><span>Você sabe onde nos encontrar</span></div>
+        <div><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3l7 3v6c0 4.4-3 7.7-7 9-4-1.3-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><strong>Garantia por escrito</strong><span>Prazo definido no orçamento</span></div>
+        <div><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><strong>Diagnóstico no mesmo dia</strong><span>Sem compromisso de fechar</span></div>
+        <div><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M20 6H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z"/><path d="M8 6V4h8v2"/></svg></span><strong>Todas as marcas</strong><span>Dell, HP, Lenovo, Acer, Asus</span></div>
+      </div>
+    </section>
+
+    <!-- ============ ESTÉTICA ============ -->
+    <section id="estetica">
+      <div class="sec-cabeca">
+        <h2>Estética</h2>
+        <p>Arredondamento, sombra e espaçamento carregam hierarquia. Mexa nos controles e veja o efeito no cartão à direita.</p>
+      </div>
+
+      <div class="brinca">
+        <div>
+          <div class="controle">
+            <label for="raio">Arredondamento <span id="vRaio">14px</span></label>
+            <input type="range" id="raio" min="0" max="28" value="14">
+          </div>
+          <div class="controle">
+            <label for="pad">Respiro interno <span id="vPad">26px</span></label>
+            <input type="range" id="pad" min="12" max="48" value="26">
+          </div>
+          <div class="controle">
+            <label>Sombra</label>
+            <div class="opcoes" id="opcoesSombra">
+              <button class="opcao" data-s="none" aria-pressed="false">nenhuma</button>
+              <button class="opcao" data-s="var(--s1)" aria-pressed="true">s1</button>
+              <button class="opcao" data-s="var(--s2)" aria-pressed="false">s2</button>
+              <button class="opcao" data-s="var(--s3)" aria-pressed="false">s3</button>
+            </div>
+          </div>
+        </div>
+        <div class="palco">
+          <div class="amostra-caixa" id="amostraCaixa" style="border-radius:14px;box-shadow:var(--s1);border:1px solid var(--borda)">
+            <h4>Formatação com backup</h4>
+            <p>Seus arquivos preservados e o sistema limpo, pronto para usar.</p>
+            <button class="btn btn-p">Pedir orçamento</button>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="bloco">Escala de arredondamento</h3>
+      <div class="tab-envolve">
+        <table>
+          <tr><th>Token</th><th>Valor</th><th>Onde usar</th></tr>
+          <tr><td><code>--r-selo</code></td><td>6px</td><td>Preço, etiqueta, tag</td></tr>
+          <tr><td><code>--r-acao</code></td><td>10px</td><td>Botão, input, select</td></tr>
+          <tr><td><code>--r-card</code></td><td>14px</td><td>Card e caixa de imagem</td></tr>
+          <tr><td><code>--r-painel</code></td><td>20px</td><td>Bloco de destaque e formulário</td></tr>
+          <tr><td><code>--r-total</code></td><td>999px</td><td>Chip, avatar, botão flutuante</td></tr>
+          <tr><td><code>--r-zero</code></td><td>0</td><td>Faixas de largura total e cabeçalho</td></tr>
+        </table>
+      </div>
+      <p style="margin-top:14px;font-size:14.5px;color:var(--grafite)">Regra: superfície maior, raio maior. Um único raio em tudo achata a hierarquia e deixa a página com cara de template.</p>
+
+      <h3 class="bloco">Sombras tingidas de navy</h3>
+      <div class="sombras">
+        <div class="sombra-item" style="box-shadow:var(--s1)">s1<small>card em repouso</small></div>
+        <div class="sombra-item" style="box-shadow:var(--s2)">s2<small>card em hover</small></div>
+        <div class="sombra-item" style="box-shadow:var(--s3)">s3<small>topo fixo, modal</small></div>
+        <div class="sombra-item" style="box-shadow:var(--s-acao)">s-ação<small>só no CTA vermelho</small></div>
+      </div>
+
+      <h3 class="bloco">Escala de espaçamento (base 4px)</h3>
+      <div class="escala-espaco" id="escalaEspaco"></div>
+      <p style="margin-top:18px;font-size:14.5px;color:var(--grafite)">Seção com 96px vertical no desktop e 56px no mobile. Container de 1200px. O espaço acima de um título é sempre maior que o de baixo — é o que agrupa a informação.</p>
+    </section>
+
+    <!-- ============ AUTORIDADE ============ -->
+    <section id="autoridade">
+      <div class="sec-cabeca">
+        <h2>Como o sistema constrói <em>autoridade</em></h2>
+        <p>Numa loja de informática, o visitante está entregando um equipamento caro para um desconhecido. Cada item abaixo tem lugar reservado no layout.</p>
+      </div>
+      <div class="regras">
+        <div class="regra"><span class="marca-sim">1</span><span><b>Endereço e telefone no cabeçalho.</b> Negócio com rua e número vale mais que qualquer adjetivo.</span></div>
+        <div class="regra"><span class="marca-sim">2</span><span><b>Faixa de confiança logo após o hero</b>, antes de qualquer tentativa de venda.</span></div>
+        <div class="regra"><span class="marca-sim">3</span><span><b>Marcas atendidas e prazo de diagnóstico</b> em bloco próprio. Prova técnica, não promessa.</span></div>
+        <div class="regra"><span class="marca-sim">4</span><span><b>Números em tipografia grande:</b> anos de mercado, equipamentos atendidos, nota no Google.</span></div>
+        <div class="regra"><span class="marca-sim">5</span><span><b>Rosto e nome do responsável técnico.</b> Confiança em serviço técnico é pessoal.</span></div>
+        <div class="regra"><span class="marca-sim">6</span><span><b>Foto real da bancada e da fachada.</b> Vale mais que qualquer render de banco de imagem.</span></div>
+        <div class="regra"><span class="marca-sim">7</span><span><b>Rodapé institucional:</b> razão social, CNPJ, horário e mapa.</span></div>
+        <div class="regra"><span class="marca-nao">8</span><span><b>Sem contagem regressiva e sem preço piscando.</b> Urgência falsa destrói exatamente a confiança que a página está construindo.</span></div>
+      </div>
+    </section>
+
+    <!-- ============ CONVERSÃO ============ -->
+    <section id="conversao">
+      <div class="sec-cabeca">
+        <h2>Conversão para o WhatsApp</h2>
+        <p>Uma chamada a cada rolagem e meia, sempre com o contexto da seção na mensagem. Assim você descobre qual bloco gerou o lead sem instalar nada.</p>
+      </div>
+
+      <div class="mapa-cta">
+        <div class="etapa"><div class="onde">Hero</div><div><strong>Falar no WhatsApp agora</strong><div class="msg">"Olá! Vim pelo site e quero falar com um técnico."</div></div></div>
+        <div class="etapa"><div class="onde">Após serviços</div><div><strong>Pedir orçamento do meu equipamento</strong><div class="msg">"Olá! Quero orçamento para: "</div></div></div>
+        <div class="etapa"><div class="onde">Após produtos</div><div><strong>Consultar disponibilidade</strong><div class="msg">"Olá! Vi no site e queria saber sobre: "</div></div></div>
+        <div class="etapa"><div class="onde">Após depoimentos</div><div><strong>Quero o mesmo atendimento</strong><div class="msg">"Olá! Li os depoimentos e quero atendimento."</div></div></div>
+        <div class="etapa"><div class="onde">Flutuante</div><div><strong>Fala com a gente</strong><div class="msg">"Olá! Estou no site da VileTech."</div></div></div>
+      </div>
+
+      <h3 class="bloco">Link com mensagem pronta</h3>
+      <p style="font-size:14.5px;color:var(--grafite);margin-bottom:10px">Troque <code>DDDNUMERO</code> pelo número da loja. A mensagem vai codificada em URL:</p>
+      <div class="tab-envolve" style="padding:16px;overflow-x:auto"><code>https://wa.me/55DDDNUMERO?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20falar%20com%20um%20t%C3%A9cnico.</code></div>
+
+      <h3 class="bloco">Microcopy que sustenta o clique</h3>
+      <div class="regras">
+        <div class="regra"><span class="marca-sim">Sim</span><span><b>"Resposta em minutos, de segunda a sexta, 8h às 18h"</b> abaixo do CTA. Expectativa clara aumenta o clique.</span></div>
+        <div class="regra"><span class="marca-sim">Sim</span><span><b>Botão flutuante aparece após 25% de rolagem</b>, com balão de texto que some em 6 segundos. Veja no canto da tela.</span></div>
+        <div class="regra"><span class="marca-sim">Sim</span><span><b>No mobile, barra fixa no rodapé:</b> WhatsApp em verde ocupando 70% e "Ligar" em contorno navy nos 30%.</span></div>
+        <div class="regra"><span class="marca-nao">Não</span><span><b>"Precisa de ajuda?" no flutuante.</b> Soa a robô. Use "Fala com a gente".</span></div>
+      </div>
+    </section>
+
+    <!-- ============ TOM ============ -->
+    <section id="tom">
+      <div class="fecho">
+        <h3>Tom visual em 3 linhas</h3>
+        <p>Loja de bairro com padrão de assistência autorizada: base branca e limpa, azul-marinho segurando a autoridade e o vermelho VileTech aparecendo pouco, só onde é para clicar.</p>
+        <p>A tipografia é firme e técnica, com títulos de duas cores por linha herdados dos posts e números grandes fazendo o papel de argumento.</p>
+        <p>Cantos suaves, sombras azuladas e muito espaço em branco — o resultado é confiável e organizado, com o verde do WhatsApp como único ponto de fuga da página.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<button class="flutuante" id="flutuante" aria-label="Falar no WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.4 4.5-1.2A10 10 0 1 0 12 2zm5.3 14c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.1-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4 0 .5-.1l.7-.8c.2-.2.3-.2.6-.1l1.7.8c.3.1.5.2.5.4 0 .1 0 .5-.2 1z"/></svg>
+</button>
+
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+<script>
+const cores = {
+  paletaPrincipal:[
+    {n:'Azul-marinho placa',h:'#0B2239',v:'--azul-placa',u:'Títulos, rodapé, faixas escuras, texto forte',c:'15.1:1 no branco',claro:1},
+    {n:'Vermelho VileTech',h:'#DE1F26',v:'--vermelho-vile',u:'CTA, preço, selo, uma linha de título',c:'4.8:1 com texto branco',claro:1},
+    {n:'Branco bancada',h:'#FFFFFF',v:'--branco-bancada',u:'Fundo dominante, cards, formulário',c:'base da página',claro:0}
+  ],
+  paletaSecundaria:[
+    {n:'Azul elétrico',h:'#0F6BD4',v:'--azul-sinal',u:'Link, ícone, foco de campo, borda ativa',c:'5.1:1 no branco',claro:1},
+    {n:'Azul intermediário',h:'#123A5F',v:'--azul-fumaca',u:'Gradiente da faixa escura, hover navy',c:'11.3:1 no branco',claro:1},
+    {n:'Cinza antiestático',h:'#F1F4F8',v:'--cinza-antiestatico',u:'Seção alternada, área de imagem no card',c:'fundo neutro',claro:0},
+    {n:'Grafite',h:'#46586B',v:'--grafite',u:'Texto de apoio, legenda, descrição',c:'6.9:1 no branco',claro:1}
+  ],
+  paletaSuporte:[
+    {n:'Verde WhatsApp',h:'#0E7C41',v:'--verde-whats',u:'Botão flutuante e barra fixa do mobile',c:'5.3:1 com texto branco',claro:1},
+    {n:'Verde brilho',h:'#25D366',v:'--verde-whats-brilho',u:'Só o glifo do WhatsApp sobre navy',c:'não usar como fundo de texto',claro:0},
+    {n:'Vermelho forte',h:'#B8151B',v:'--vermelho-forte',u:'Hover e pressionado do CTA',c:'5.9:1 com texto branco',claro:1},
+    {n:'Âmbar',h:'#F0A020',v:'--ambar',u:'Estrelas de avaliação, aviso de prazo',c:'só em ícone e fundo',claro:0},
+    {n:'Borda',h:'#DCE3EC',v:'--borda',u:'Borda de card, input e divisor',c:'estrutura',claro:0},
+    {n:'Borda forte',h:'#B9C6D6',v:'--borda-forte',u:'Divisor sobre cinza',c:'estrutura',claro:0},
+    {n:'Desabilitado',h:'#8697A8',v:'--desabilitado',u:'Placeholder e campo bloqueado',c:'3.4:1 no branco',claro:1}
+  ]
+};
+
+function aviso(txt){
+  const el=document.getElementById('aviso');
+  el.textContent=txt; el.classList.add('visivel');
+  clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove('visivel'),1800);
+}
+function copiar(txt,msg){
+  navigator.clipboard.writeText(txt).then(()=>aviso(msg)).catch(()=>aviso('Não foi possível copiar aqui. Selecione o texto manualmente.'));
+}
+
+Object.keys(cores).forEach(id=>{
+  const alvo=document.getElementById(id);
+  cores[id].forEach(c=>{
+    const b=document.createElement('button');
+    b.className='cor'; b.type='button';
+    b.setAttribute('aria-label','Copiar '+c.h+' — '+c.n);
+    b.innerHTML=`<span class="amostra" style="background:${c.h};${c.h==='#FFFFFF'?'box-shadow:inset 0 0 0 1px #DCE3EC;':''}">
+        <span class="contraste">${c.c}</span></span>
+      <span class="info"><span class="nome">${c.n}</span><span class="hex">${c.h}</span>
+      <span class="papel">${c.u}</span></span>`;
+    b.addEventListener('click',()=>copiar(c.h,c.h+' copiado'));
+    alvo.appendChild(b);
+  });
+});
+
+// escala de espaçamento
+const espacos=[4,8,12,16,24,32,48,64,96,128];
+const alvoEsp=document.getElementById('escalaEspaco');
+espacos.forEach(v=>{
+  const d=document.createElement('div');
+  d.className='esp';
+  d.innerHTML=`<div class="barra" style="height:${Math.round(v*0.9)}px"></div><span>${v}</span>`;
+  alvoEsp.appendChild(d);
+});
+
+// playground
+const caixa=document.getElementById('amostraCaixa');
+const raio=document.getElementById('raio'), pad=document.getElementById('pad');
+raio.addEventListener('input',e=>{caixa.style.borderRadius=e.target.value+'px';document.getElementById('vRaio').textContent=e.target.value+'px';});
+pad.addEventListener('input',e=>{caixa.style.padding=e.target.value+'px';document.getElementById('vPad').textContent=e.target.value+'px';});
+document.querySelectorAll('#opcoesSombra .opcao').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('#opcoesSombra .opcao').forEach(o=>o.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed','true');
+    caixa.style.boxShadow=b.dataset.s;
+  });
+});
+
+// troca de fonte de título
+document.getElementById('trocaFonte').addEventListener('click',e=>{
+  const alt=document.body.classList.toggle('alt-titulo');
+  e.target.setAttribute('aria-pressed',alt);
+  e.target.textContent=alt?'Voltar títulos para Archivo':'Testar títulos em Montserrat';
+});
+
+// formulário demo
+document.getElementById('enviaDemo').addEventListener('click',()=>{
+  const nome=document.getElementById('nome'), zap=document.getElementById('zap');
+  let ok=true;
+  [nome,zap].forEach(i=>{
+    const campo=i.closest('.campo');
+    if(!i.value.trim()){campo.classList.add('erro');ok=false;}
+    else campo.classList.remove('erro');
+  });
+  if(ok){
+    document.getElementById('formDemo').style.display='none';
+    document.getElementById('sucessoDemo').style.display='block';
+  }
+});
+
+// flutuante
+const flut=document.getElementById('flutuante');
+window.addEventListener('scroll',()=>{
+  const p=window.scrollY/(document.body.scrollHeight-window.innerHeight);
+  flut.classList.toggle('visivel',p>0.12);
+},{passive:true});
+flut.addEventListener('click',()=>aviso('No site real, este botão abre o WhatsApp com a mensagem pronta.'));
+
+// índice ativo
+const secs=[...document.querySelectorAll('section[id]')];
+const links=[...document.querySelectorAll('.indice a')];
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.classList.toggle('ativo',l.getAttribute('href')==='#'+e.target.id));
+    }
+  });
+},{rootMargin:'-20% 0px -70% 0px'});
+secs.forEach(s=>obs.observe(s));
+
+// copiar tokens
+const tokens=`:root{
+  --azul-placa:#0B2239;
+  --azul-fumaca:#123A5F;
+  --azul-sinal:#0F6BD4;
+  --vermelho-vile:#DE1F26;
+  --vermelho-forte:#B8151B;
+  --verde-whats:#0E7C41;
+  --verde-whats-brilho:#25D366;
+  --ambar:#F0A020;
+  --branco-bancada:#FFFFFF;
+  --cinza-antiestatico:#F1F4F8;
+  --grafite:#46586B;
+  --borda:#DCE3EC;
+  --borda-forte:#B9C6D6;
+  --desabilitado:#8697A8;
+
+  --fonte-titulo:'Archivo',system-ui,sans-serif;
+  --fonte-corpo:'IBM Plex Sans',system-ui,sans-serif;
+  --t-h1:clamp(2.125rem,5.2vw,3.5rem);
+  --t-h2:clamp(1.6875rem,3.4vw,2.5rem);
+  --t-h3:clamp(1.375rem,2.2vw,1.75rem);
+  --t-h4:1.25rem;
+  --t-lead:1.1875rem;
+  --t-corpo:1rem;
+  --t-apoio:0.875rem;
+  --t-selo:0.8125rem;
+
+  --r-selo:6px; --r-acao:10px; --r-card:14px; --r-painel:20px; --r-total:999px;
+
+  --s1:0 1px 2px rgba(11,34,57,.06),0 2px 8px rgba(11,34,57,.06);
+  --s2:0 10px 26px rgba(11,34,57,.10);
+  --s3:0 16px 40px rgba(11,34,57,.16);
+  --s-acao:0 8px 20px rgba(222,31,38,.28);
+  --s-produto:0 24px 60px rgba(15,107,212,.22);
+
+  --e1:4px; --e2:8px; --e3:12px; --e4:16px; --e5:24px;
+  --e6:32px; --e7:48px; --e8:64px; --e9:96px; --e10:128px;
+  --container:1200px;
+  --transicao:180ms cubic-bezier(.2,.7,.3,1);
+}`;
+document.getElementById('copiaTudo').addEventListener('click',()=>copiar(tokens,'Tokens CSS copiados'));
+</script>
+</body>
+</html>
