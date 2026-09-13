@@ -11,14 +11,24 @@ Objetivo único da página: provar competência técnica e levar o visitante ao 
 
 | Arquivo | O que é |
 |---|---|
-| `index.html` | A landing page completa — HTML, CSS e JS em arquivo único |
+| `index.html` | A Home — hero, produtos em destaque, serviços, avaliações, loja, contato |
+| `catalogo.html` | Catálogo completo: todos os produtos reais, com busca e filtro por categoria |
+| `estilo.css` | CSS compartilhado entre `index.html` e `catalogo.html` (tokens, componentes, cards) |
+| `dados-produtos.js` | Fonte única dos produtos (nome/categoria/marca reais) e do número do WhatsApp |
+| `vitrine/` | As fotos dos produtos (`vitrine/<n>.jpg`), usadas pelas duas páginas |
 | `design-system-viletech.html` | Design system de origem (tokens, componentes, regras de uso) |
 | `Info maps.txt` | Dados e avaliações do perfil da loja no Google |
 | `bio insta.txt` | Bio do Instagram (lista de serviços) |
 | `fotos/` | Fotos reais da loja (ver abaixo) |
 | `Logo/` | Arquivos de logo da marca |
 
-Basta abrir `index.html` no navegador. Não há build, bundler nem instalação.
+Basta abrir `index.html` no navegador. Não há build, bundler nem instalação — só HTML, CSS e JS puros, em arquivos separados por responsabilidade em vez de tudo num único arquivo.
+
+### Produtos e categorias
+
+`dados-produtos.js` é a única fonte de verdade dos produtos: cada item tem `n` (número da foto em `vitrine/`), `nome`, `categoria` e `marca`, tirados do que está escrito na própria embalagem fotografada — nada é inventado. Quando uma foto mostra uma prateleira com vários produtos misturados, ou é um reflexo de vitrine sem um produto único e legível, o `nome` fica `null` e a categoria vira `"Diversos"`.
+
+Para adicionar, remover ou corrigir um produto: edite o array `TODOS_PRODUTOS` nesse arquivo — a Home (seleção `PRODUTOS_DESTAQUE`, dentro de `index.html`) e o Catálogo (`catalogo.html`) se ajustam sozinhos. A navegação por categoria do Catálogo agrupa as categorias específicas em grupos mais amplos via `GRUPOS_CATEGORIA` — para uma categoria nova, adicione uma linha lá também (cai em "Diversos" automaticamente se você esquecer).
 
 ---
 
@@ -26,13 +36,13 @@ Basta abrir `index.html` no navegador. Não há build, bundler nem instalação.
 
 ### 1. Número do WhatsApp
 
-Hoje a página usa o telefone fixo da loja. Troque a constante no início do `<script>` de `index.html`:
+Hoje a página usa o telefone fixo da loja. Troque a constante no topo de `dados-produtos.js`:
 
 ```js
 var NUMERO_WHATSAPP = '553534093030';
 ```
 
-Os 13 links de WhatsApp da página são reescritos a partir dessa única linha, cada um com sua mensagem de contexto já pronta.
+Essa é a única linha: tanto a Home quanto o Catálogo completo reescrevem todos os seus links de WhatsApp a partir dela, cada um com sua mensagem de contexto já pronta (incluindo o nome do produto real, quando a pergunta parte de um card).
 
 ### 2. Fotos da loja
 
@@ -83,11 +93,12 @@ Mobile-first, verificado em 1280 / 768 / 375px — sem overflow horizontal em ne
 
 ## Performance
 
-- Arquivo único, ~80 KB, sem framework nem biblioteca
+- HTML + CSS + JS puros, sem framework nem biblioteca, sem build
+- CSS compartilhado num único `estilo.css` (cacheado uma vez, usado nas duas páginas)
 - Todas as ilustrações e gráficos são SVG inline
 - Fontes carregadas com `display=swap` e stack de fallback do sistema
-- Imagens com `loading="lazy"` e `decoding="async"`
-- Degrada com JavaScript desativado: todo o conteúdo continua visível
+- Imagens com `loading="lazy"` e `decoding="async"`; o Catálogo carrega os produtos em lotes de 24 ("Carregar mais") para não renderizar as 145 fotos de uma vez
+- Degrada com JavaScript desativado: todo o conteúdo da Home continua visível (o Catálogo depende de JS para busca/filtro, por ser uma grade gerada em tempo real)
 
 ## Interações
 
