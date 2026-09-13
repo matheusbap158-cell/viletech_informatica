@@ -402,6 +402,8 @@ ul{list-style:none}
 .catalogo-vazio{text-align:center;padding:var(--e9) var(--e5);color:var(--grafite)}
 .catalogo-vazio svg{color:var(--borda-forte);margin-bottom:var(--e4)}
 .catalogo-vazio h3{font-family:var(--fonte-titulo);font-size:20px;color:var(--azul-placa);margin-bottom:8px}
+.catalogo-vazio p{max-width:46ch;margin:0 auto}
+.catalogo-vazio .btn{margin-top:var(--e5)}
 
 .catalogo-carregar-mais{display:flex;justify-content:center;margin-top:var(--e7)}
 

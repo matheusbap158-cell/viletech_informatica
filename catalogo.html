@@ -93,7 +93,11 @@
       <div class="catalogo-vazio" id="catalogoVazio" hidden>
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
         <h3>Nenhum produto encontrado</h3>
-        <p>Tente outra palavra ou escolha "Todos" nas categorias.</p>
+        <p>Tente outra palavra ou escolha "Todos" nas categorias — ou pergunte direto pra gente, pode ser que a gente tenha e ainda não tenha fotografado.</p>
+        <a class="btn btn-p btn-mini" id="catalogoVazioZap" href="#" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.4 4.5-1.2A10 10 0 1 0 12 2zm5.3 14c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.1-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4 0 .5-.1l.7-.8c.2-.2.3-.2.6-.1l1.7.8c.3.1.5.2.5.4 0 .1 0 .5-.2 1z"/></svg>
+          Perguntar no WhatsApp
+        </a>
       </div>
 
       <div class="catalogo-carregar-mais" id="areaCarregarMais" hidden>
@@ -269,6 +273,7 @@
   var grade = document.getElementById('catalogoGrade');
   var contagemEl = document.getElementById('catalogoContagem');
   var vazioEl = document.getElementById('catalogoVazio');
+  var vazioZap = document.getElementById('catalogoVazioZap');
   var areaCarregarMais = document.getElementById('areaCarregarMais');
   var btnCarregarMais = document.getElementById('btnCarregarMais');
   var campoBusca = document.getElementById('buscaProdutos');
@@ -378,6 +383,10 @@
 
     if(total === 0){
       contagemEl.textContent = 'Nenhum produto encontrado';
+      var msgVazio = termoBusca
+        ? ('Olá! Procurei por "' + campoBusca.value.trim() + '" no catálogo do site mas não encontrei. Vocês têm?')
+        : 'Olá! Não encontrei o que procurava no catálogo do site. Vocês têm o que preciso?';
+      vazioZap.setAttribute('href','https://wa.me/' + NUMERO_WHATSAPP + '?text=' + encodeURIComponent(msgVazio));
     } else {
       contagemEl.innerHTML = '<strong>' + total + '</strong> produto' + (total === 1 ? '' : 's') + ' encontrado' + (total === 1 ? '' : 's');
     }
