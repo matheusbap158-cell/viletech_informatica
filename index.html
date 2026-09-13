@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VileTech Informática — Assistência técnica em Lavras/MG</title>
-<meta name="description" content="Manutenção de notebook, montagem de PC, rede e Wi-Fi em Lavras/MG. Diagnóstico no mesmo dia e orçamento por escrito. R. Barão do Rio Branco, 211 — Centro.">
+<title>VileTech Informática — Loja de tecnologia e assistência em Lavras/MG</title>
+<meta name="description" content="Notebooks, videogames, redes e acessórios em estoque, além de manutenção de notebook, montagem de PC e assistência técnica em Lavras/MG. Loja física no Centro, diagnóstico no mesmo dia.">
 <meta name="theme-color" content="#0B2239">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -180,6 +180,20 @@ ul{list-style:none}
 }
 .selo-topo svg{flex:none}
 .hero-arte{position:relative}
+.hero-vitrine-prevista{
+  position:absolute;left:6%;bottom:-18px;display:flex;align-items:center;
+  background:#fff;border-radius:var(--r-total);padding:8px 18px 8px 8px;
+  box-shadow:var(--s3);text-decoration:none;transition:var(--transicao);
+}
+.hero-vitrine-prevista:hover{transform:translateY(-3px);box-shadow:0 20px 46px rgba(11,34,57,.30)}
+.hero-vitrine-prevista:focus-visible{outline:3px solid var(--azul-sinal);outline-offset:3px}
+.hero-vitrine-prevista img{
+  width:44px;height:44px;border-radius:var(--r-total);object-fit:cover;
+  border:2px solid #fff;box-shadow:0 2px 6px rgba(11,34,57,.2);
+}
+.hero-vitrine-prevista img+img{margin-left:-16px}
+.hero-vitrine-badge{margin-left:12px;font-size:12.5px;font-weight:600;color:var(--azul-placa);line-height:1.25}
+.hero-vitrine-badge strong{display:block;font-family:var(--fonte-titulo);font-size:16px;color:var(--vermelho-vile)}
 
 /* ========================= FAIXA DE CONFIANÇA ========================= */
 .confianca{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:var(--e5);padding:var(--e6) 0}
@@ -210,7 +224,13 @@ ul{list-style:none}
 .lista-check li{font-size:14.5px;color:var(--grafite);display:flex;gap:10px;align-items:flex-start}
 .lista-check svg{flex:none;color:var(--verde-whats);margin-top:4px}
 
-.card-prova{background:#fff;border-radius:var(--r-card);border-left:3px solid var(--vermelho-vile);padding:24px;box-shadow:var(--s1)}
+.card-prova{background:#fff;border-radius:var(--r-card);padding:28px 24px 24px;box-shadow:var(--s1);position:relative;overflow:hidden;transition:var(--transicao)}
+.card-prova:hover{box-shadow:var(--s2);transform:translateY(-2px)}
+.card-prova::before{
+  content:"\201C";position:absolute;top:-14px;right:16px;font-family:Georgia,'Times New Roman',serif;
+  font-size:76px;line-height:1;color:var(--cinza-antiestatico);z-index:0;pointer-events:none;
+}
+.card-prova > *{position:relative;z-index:1}
 .estrelas{color:var(--ambar);font-size:15px;letter-spacing:2px}
 .card-prova p{margin:10px 0 14px;font-size:15.5px}
 .card-prova .quem{font-size:14px;color:var(--grafite)}
@@ -303,6 +323,68 @@ ul{list-style:none}
   position:absolute;left:0;right:0;bottom:0;padding:12px 14px;font-size:12.5px;font-weight:600;
   background:linear-gradient(transparent,rgba(11,34,57,.85));color:#fff;
 }
+
+/* ========================= VITRINE ========================= */
+.produtos-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--e5);margin-top:var(--e7)}
+.produto-card{
+  background:#fff;border:1px solid var(--borda);border-radius:var(--r-card);overflow:hidden;
+  display:flex;flex-direction:column;text-align:left;cursor:pointer;padding:0;width:100%;
+  transition:var(--transicao);box-shadow:var(--s1);
+}
+.produto-card:hover,.produto-card:focus-visible{border-color:var(--azul-sinal);box-shadow:var(--s2);transform:translateY(-4px)}
+.produto-card:focus-visible{outline:3px solid var(--azul-sinal);outline-offset:2px}
+.produto-foto{position:relative;aspect-ratio:1/1;background:var(--cinza-antiestatico);overflow:hidden}
+.produto-foto img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 460ms cubic-bezier(.2,.7,.3,1)}
+.produto-card:hover .produto-foto img{transform:scale(1.05)}
+.produto-corpo{padding:18px 20px 20px;display:flex;flex-direction:column;gap:5px;flex:1}
+.produto-categoria{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--azul-sinal)}
+.produto-nome{font-family:var(--fonte-titulo);font-size:17px;font-weight:700;color:var(--azul-placa);line-height:1.28}
+.produto-acao{
+  margin-top:auto;padding-top:14px;display:flex;align-items:center;gap:6px;
+  font-size:14px;font-weight:600;color:var(--azul-sinal);
+}
+.produto-acao svg{transition:transform var(--transicao)}
+.produto-card:hover .produto-acao svg{transform:translateX(3px)}
+
+.vitrine-mais{display:flex;justify-content:center;margin-top:var(--e7)}
+.vitrine-mais .btn svg{transition:transform var(--transicao)}
+.vitrine-mais .btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.vitrine-completa{margin-top:var(--e7);padding-top:var(--e7);border-top:1px solid var(--borda)}
+
+.vitrine-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--e4);margin-top:var(--e6)}
+.vitrine-item{
+  position:relative;aspect-ratio:1;border-radius:var(--r-card);overflow:hidden;width:100%;
+  background:var(--cinza-antiestatico);border:1px solid var(--borda);cursor:pointer;
+  padding:0;transition:var(--transicao);box-shadow:var(--s1);display:block;
+}
+.vitrine-item:hover,.vitrine-item:focus-visible{border-color:var(--azul-sinal);box-shadow:var(--s2);transform:translateY(-3px)}
+.vitrine-item:focus-visible{outline:3px solid var(--azul-sinal);outline-offset:2px}
+.vitrine-item img{width:100%;height:100%;object-fit:cover;display:block}
+.vitrine-item .vitrine-num{
+  position:absolute;left:8px;bottom:8px;background:rgba(11,34,57,.78);color:#fff;
+  font-size:11px;font-weight:600;padding:3px 9px;border-radius:var(--r-total);font-family:var(--fonte-corpo);
+}
+
+.lightbox{
+  position:fixed;inset:0;background:rgba(11,34,57,.94);z-index:200;
+  display:flex;align-items:center;justify-content:center;padding:72px var(--e5) var(--e6);
+}
+.lightbox[hidden]{display:none}
+.lightbox figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:var(--e4);max-width:min(92vw,900px)}
+.lightbox img{max-width:100%;max-height:66vh;border-radius:var(--r-card);background:#fff;box-shadow:var(--s3);object-fit:contain}
+.lightbox figcaption{color:#C3D3E4;font-size:13.5px;text-align:center}
+.lightbox figcaption strong{display:block;color:#fff;font-size:16px;font-weight:700;font-family:var(--fonte-titulo);margin-bottom:2px}
+.lightbox-fechar,.lightbox-nav{
+  position:fixed;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);color:#fff;
+  border-radius:var(--r-total);width:46px;height:46px;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:var(--transicao);
+}
+.lightbox-fechar:hover,.lightbox-nav:hover{background:rgba(255,255,255,.22)}
+.lightbox-fechar:focus-visible,.lightbox-nav:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.lightbox-fechar{top:20px;right:20px}
+.lightbox-anterior{left:20px;top:50%;transform:translateY(-50%)}
+.lightbox-proximo{right:20px;top:50%;transform:translateY(-50%)}
+.lightbox-cta{margin-top:2px}
 
 /* ========================= FORMULÁRIO ========================= */
 .form{background:var(--cinza-antiestatico);border-radius:var(--r-painel);padding:32px;max-width:520px}
@@ -443,6 +525,18 @@ ul{list-style:none}
   .barra-mobile{display:flex}
   .flutuante-area{bottom:88px;right:16px}
   .balao{display:none}
+
+  .hero-vitrine-prevista{position:static;margin:-24px auto 0;width:max-content}
+
+  .produtos-grade{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--e4);margin-top:var(--e6)}
+  .produto-corpo{padding:14px 16px 16px}
+  .produto-nome{font-size:15.5px}
+
+  .vitrine-grade{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:var(--e3)}
+  .lightbox{padding:64px 8px var(--e5)}
+  .lightbox-fechar{top:12px;right:12px}
+  .lightbox-anterior{left:6px}
+  .lightbox-proximo{right:6px}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -476,7 +570,8 @@ ul{list-style:none}
     </a>
 
     <nav class="menu" id="menu" aria-label="Navegação principal">
-      <a href="#servicos">Serviços</a>
+      <a href="#vitrine">Vitrine</a>
+      <a href="#servicos">Assistência técnica</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#avaliacoes">Avaliações</a>
       <a href="#loja">A loja</a>
@@ -504,16 +599,19 @@ ul{list-style:none}
   <section class="hero" id="inicio" aria-labelledby="tituloHero">
     <div class="container hero-grade">
       <div>
-        <p class="selo" style="color:#FF6B70">Assistência Técnica de Informática</p>
-        <h1 id="tituloHero">Seu computador <span>volta hoje mesmo.</span></h1>
-        <p class="lead">Traga o equipamento na loja ou chame no WhatsApp: a gente avalia e diz o que compensa consertar.</p>
+        <p class="selo" style="color:#FF6B70">Loja e assistência técnica em Lavras/MG</p>
+        <h1 id="tituloHero">Tecnologia para comprar. <span>Assistência para consertar.</span></h1>
+        <p class="lead">Notebooks, videogames, redes e acessórios em estoque na loja do Centro de Lavras — e se for o seu equipamento que precisar de ajuda, ele volta consertado no mesmo dia.</p>
 
         <div class="linha-btn">
           <a class="btn btn-p" data-zap="Olá! Vim pelo site e quero falar com um técnico." href="https://wa.me/553534093030?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20falar%20com%20um%20t%C3%A9cnico." target="_blank" rel="noopener">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.4 4.5-1.2A10 10 0 1 0 12 2zm5.3 14c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.1-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4 0 .5-.1l.7-.8c.2-.2.3-.2.6-.1l1.7.8c.3.1.5.2.5.4 0 .1 0 .5-.2 1z"/></svg>
             Falar no WhatsApp agora
           </a>
-          <a class="btn btn-contorno-claro" href="#servicos">Ver os serviços</a>
+          <a class="btn btn-contorno-claro" href="#vitrine">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
+            Ver produtos
+          </a>
         </div>
         <p class="micro-cta">Resposta em minutos, de segunda a sexta, 8h às 18h</p>
 
@@ -625,9 +723,74 @@ ul{list-style:none}
           <!-- sombra da bancada -->
           <ellipse cx="280" cy="392" rx="190" ry="14" fill="#0B2239" opacity=".35"/>
         </svg>
+
+        <a class="hero-vitrine-prevista" href="#vitrine">
+          <img src="vitrine/1.jpg" alt="" loading="eager" decoding="async" width="120" height="120">
+          <img src="vitrine/65.jpg" alt="" loading="eager" decoding="async" width="120" height="120">
+          <img src="vitrine/89.jpg" alt="" loading="eager" decoding="async" width="120" height="120">
+          <span class="hero-vitrine-badge"><strong>145</strong>produtos em estoque</span>
+        </a>
       </div>
     </div>
   </section>
+
+  <!-- ========================================================================
+       VITRINE
+       ======================================================================== -->
+  <section class="secao vitrine-secao" id="vitrine" aria-labelledby="tituloVitrine">
+    <div class="container">
+      <div class="cabeca-secao revela">
+        <p class="selo">Vitrine</p>
+        <h2 class="h2" id="tituloVitrine">Produtos em destaque</h2>
+        <p class="corpo">Peças reais do nosso estoque no Centro de Lavras, fotografadas direto na loja. Disponibilidade muda todo dia — confirme com a gente antes de vir buscar.</p>
+      </div>
+
+      <div class="produtos-grade" id="produtosDestaque" role="list" aria-label="Produtos em destaque"></div>
+
+      <div class="vitrine-mais revela">
+        <button type="button" class="btn btn-s" id="btnVerTudo" aria-expanded="false" aria-controls="vitrineCompleta">
+          <span id="labelVerTudo">Ver todos os <span id="totalVitrineTexto">145</span> produtos em estoque</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+      </div>
+
+      <div class="vitrine-completa" id="vitrineCompleta" hidden>
+        <p class="corpo" style="margin:0 0 var(--e5)">Estoque completo, foto por foto. Clique em qualquer uma para ampliar e perguntar a disponibilidade.</p>
+        <div class="vitrine-grade" id="vitrineGrade" role="list" aria-label="Todas as fotos de produtos em estoque"></div>
+      </div>
+
+      <div class="linha-btn revela" style="margin-top:var(--e7);flex-direction:column;align-items:flex-start;gap:0">
+        <a class="btn btn-p" data-zap="Olá! Vi a vitrine do site e queria saber sobre um produto." href="https://wa.me/553534093030?text=Ol%C3%A1!%20Vi%20a%20vitrine%20do%20site%20e%20queria%20saber%20sobre%20um%20produto." target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.4 4.5-1.2A10 10 0 1 0 12 2zm5.3 14c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.1-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4 0 .5-.1l.7-.8c.2-.2.3-.2.6-.1l1.7.8c.3.1.5.2.5.4 0 .1 0 .5-.2 1z"/></svg>
+          Perguntar sobre um produto
+        </a>
+        <p class="micro-cta">Resposta em minutos, de segunda a sexta, 8h às 18h</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox da vitrine: preenchido e controlado pelo JS (seção 8) -->
+  <div class="lightbox" id="vitrineLightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada do produto" hidden>
+    <button type="button" class="lightbox-fechar" id="vitrineFechar" aria-label="Fechar">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <button type="button" class="lightbox-nav lightbox-anterior" id="vitrineAnterior" aria-label="Produto anterior">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
+    <figure>
+      <img id="vitrineImg" src="" alt="" width="900" height="900">
+      <figcaption id="vitrineLegenda"></figcaption>
+      <div class="lightbox-cta">
+        <a class="btn btn-p btn-mini" id="vitrineZap" href="#" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.4 4.5-1.2A10 10 0 1 0 12 2zm5.3 14c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.1-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4 0 .5-.1l.7-.8c.2-.2.3-.2.6-.1l1.7.8c.3.1.5.2.5.4 0 .1 0 .5-.2 1z"/></svg>
+          Perguntar sobre esse produto
+        </a>
+      </div>
+    </figure>
+    <button type="button" class="lightbox-nav lightbox-proximo" id="vitrineProximo" aria-label="Próximo produto">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+  </div>
 
   <!-- ========================================================================
        FAIXA DE CONFIANÇA
@@ -661,7 +824,7 @@ ul{list-style:none}
   <section class="secao secao--cinza" id="servicos" aria-labelledby="tituloServicos">
     <div class="container">
       <div class="cabeca-secao revela">
-        <p class="selo">Serviços</p>
+        <p class="selo">Assistência técnica</p>
         <h2 class="h2" id="tituloServicos">Manutenção com diagnóstico gratuito</h2>
         <p class="corpo">Atendemos notebooks, desktops e periféricos das principais marcas. O diagnóstico sai no mesmo dia e o orçamento vai por escrito antes de qualquer serviço começar.</p>
       </div>
@@ -887,22 +1050,22 @@ ul{list-style:none}
         <figure class="card-prova revela">
           <div class="estrelas" aria-hidden="true">★★★★★</div>
           <span class="so-leitor">5 de 5 estrelas.</span>
-          <blockquote><p>Excelente atendimento e ótimos preços. Podem ir, que não irão se arrepender.. desejo mais e mais sucesso..</p></blockquote>
-          <figcaption class="quem">Carina Vilela — avaliação no Google</figcaption>
+          <blockquote><p>Adorei o atendimento. Pessoal de lá conhece sobre informática. Eles tem muita disponibilidade de produtos que preciso! Me falta é dinheiro pra tanta opção!</p></blockquote>
+          <figcaption class="quem">Juliano Jose Da Silva — avaliação no Google</figcaption>
         </figure>
 
         <figure class="card-prova revela" data-atraso="1">
           <div class="estrelas" aria-hidden="true">★★★★★</div>
           <span class="so-leitor">5 de 5 estrelas.</span>
-          <blockquote><p>otimo atendimento!<br>otimos preços</p></blockquote>
-          <figcaption class="quem">Ygor Colombo — avaliação no Google</figcaption>
+          <blockquote><p>Excelente atendimento e ótimos preços. Podem ir, que não irão se arrepender.. desejo mais e mais sucesso..</p></blockquote>
+          <figcaption class="quem">Carina Vilela — avaliação no Google</figcaption>
         </figure>
 
         <figure class="card-prova revela" data-atraso="2">
           <div class="estrelas" aria-hidden="true">★★★★★</div>
           <span class="so-leitor">5 de 5 estrelas.</span>
-          <blockquote><p>Adorei o atendimento. Pessoal de lá conhece sobre informática. Eles tem muita disponibilidade de produtos que preciso! Me falta é dinheiro pra tanta opção!</p></blockquote>
-          <figcaption class="quem">Juliano Jose Da Silva — avaliação no Google</figcaption>
+          <blockquote><p>otimo atendimento!<br>otimos preços</p></blockquote>
+          <figcaption class="quem">Ygor Colombo — avaliação no Google</figcaption>
         </figure>
 
         <figure class="card-prova revela">
@@ -1178,7 +1341,8 @@ ul{list-style:none}
         </ul>
         <h2 style="margin-top:var(--e5)">Seções</h2>
         <ul>
-          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#vitrine">Vitrine</a></li>
+          <li><a href="#servicos">Assistência técnica</a></li>
           <li><a href="#como-funciona">Como funciona</a></li>
           <li><a href="#avaliacoes">Avaliações</a></li>
           <li><a href="#contato">Contato</a></li>
@@ -1399,6 +1563,186 @@ ul{list-style:none}
      7. ANO NO RODAPÉ
      ====================================================================== */
   document.getElementById('ano').textContent = new Date().getFullYear();
+
+  /* ======================================================================
+     8. VITRINE — produtos em destaque, grade completa e lightbox
+     As fotos ficam em vitrine/1.jpg até vitrine/TOTAL_VITRINE.jpg.
+     PRODUTOS_DESTAQUE identifica, pelo número do arquivo, as fotos que
+     viraram cards com nome e categoria reais (lidos da própria embalagem
+     nas fotos). O restante do estoque aparece na grade completa, por
+     número, sem inventar nome — é só clicar em "ver todos".
+     ====================================================================== */
+  var TOTAL_VITRINE = 145;
+
+  var PRODUTOS_DESTAQUE = [
+    { n: 1,   nome: 'Redragon Zeus Lite H510-LT', categoria: 'Headset gamer' },
+    { n: 65,  nome: 'Sony DualSense',              categoria: 'Controle PS5' },
+    { n: 24,  nome: 'Redmi Pad 2',                 categoria: 'Tablet' },
+    { n: 89,  nome: 'Monitor LG',                  categoria: 'Monitor' },
+    { n: 37,  nome: 'Notebook Lenovo',             categoria: 'Notebook' },
+    { n: 56,  nome: 'Redragon Lakshmi RGB',        categoria: 'Teclado mecânico' },
+    { n: 106, nome: 'Logitech M190',               categoria: 'Mouse sem fio' },
+    { n: 73,  nome: 'Redmi Buds 6 Play',           categoria: 'Fone bluetooth' },
+    { n: 4,   nome: 'Logitech C920e',              categoria: 'Webcam Full HD' },
+    { n: 76,  nome: 'Mercusys MR30G AC1200',       categoria: 'Roteador Wi-Fi' },
+    { n: 44,  nome: 'TP-Link TL-SG1024D',          categoria: 'Switch de rede' },
+    { n: 71,  nome: 'Xiaomi Power Bank 10000',     categoria: 'Carregador portátil' },
+    { n: 81,  nome: 'DT3 Sports',                  categoria: 'Cadeira gamer' },
+    { n: 30,  nome: 'C3Tech PH-360',               categoria: 'Headset com microfone' },
+    { n: 117, nome: 'Logitech K120',               categoria: 'Teclado com fio' },
+    { n: 131, nome: 'Intelbras Pleno',              categoria: 'Telefone com fio' }
+  ];
+
+  var mapaProdutos = {};
+  PRODUTOS_DESTAQUE.forEach(function(p){ mapaProdutos[p.n] = p; });
+
+  var totalTexto = document.getElementById('totalVitrineTexto');
+  if(totalTexto) totalTexto.textContent = TOTAL_VITRINE;
+
+  var vitrineGrade = document.getElementById('vitrineGrade');
+  var produtosDestaque = document.getElementById('produtosDestaque');
+
+  if(vitrineGrade && produtosDestaque){
+    var indiceAberto = -1;
+    var lightbox = document.getElementById('vitrineLightbox');
+    var lightboxImg = document.getElementById('vitrineImg');
+    var lightboxLegenda = document.getElementById('vitrineLegenda');
+    var lightboxZap = document.getElementById('vitrineZap');
+    var btnFechar = document.getElementById('vitrineFechar');
+    var btnAnterior = document.getElementById('vitrineAnterior');
+    var btnProximo = document.getElementById('vitrineProximo');
+    var gatilhoFoco = null;
+
+    var ICONE_SETA = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+    /* --- cards de produto em destaque --- */
+    PRODUTOS_DESTAQUE.forEach(function(p){
+      var card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'produto-card';
+      card.setAttribute('role','listitem');
+      card.setAttribute('aria-label','Ver ' + p.nome + ' em tamanho maior');
+
+      var foto = document.createElement('div');
+      foto.className = 'produto-foto';
+      var img = document.createElement('img');
+      img.src = 'vitrine/' + p.n + '.jpg';
+      img.alt = p.nome + ' — ' + p.categoria + ', disponível na VileTech Informática';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.width = 400;
+      img.height = 400;
+      foto.appendChild(img);
+      card.appendChild(foto);
+
+      var corpo = document.createElement('div');
+      corpo.className = 'produto-corpo';
+      corpo.innerHTML =
+        '<span class="produto-categoria">' + p.categoria + '</span>' +
+        '<span class="produto-nome">' + p.nome + '</span>' +
+        '<span class="produto-acao">Consultar disponibilidade ' + ICONE_SETA + '</span>';
+      card.appendChild(corpo);
+
+      card.addEventListener('click', function(){ abreLightbox(p.n, card); });
+      produtosDestaque.appendChild(card);
+    });
+
+    /* --- grade completa (todas as fotos, por número) --- */
+    for(var i = 1; i <= TOTAL_VITRINE; i++){
+      (function(n){
+        var item = document.createElement('button');
+        item.type = 'button';
+        item.className = 'vitrine-item';
+        item.setAttribute('role','listitem');
+        var p = mapaProdutos[n];
+        item.setAttribute('aria-label', p ? 'Ver ' + p.nome + ' em tamanho maior' : 'Ver produto ' + n + ' em tamanho maior');
+
+        var img = document.createElement('img');
+        img.src = 'vitrine/' + n + '.jpg';
+        img.alt = p ? (p.nome + ' — ' + p.categoria) : ('Produto ' + n + ' disponível na loja VileTech Informática');
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.width = 300;
+        img.height = 300;
+        item.appendChild(img);
+
+        var numero = document.createElement('span');
+        numero.className = 'vitrine-num';
+        numero.setAttribute('aria-hidden','true');
+        numero.textContent = '#' + n;
+        item.appendChild(numero);
+
+        item.addEventListener('click', function(){ abreLightbox(n, item); });
+        vitrineGrade.appendChild(item);
+      })(i);
+    }
+
+    /* --- alternar entre destaque e catálogo completo --- */
+    var btnVerTudo = document.getElementById('btnVerTudo');
+    var vitrineCompleta = document.getElementById('vitrineCompleta');
+    var labelVerTudo = document.getElementById('labelVerTudo');
+    if(btnVerTudo && vitrineCompleta && labelVerTudo){
+      btnVerTudo.addEventListener('click', function(){
+        var abrindo = vitrineCompleta.hidden;
+        vitrineCompleta.hidden = !abrindo;
+        btnVerTudo.setAttribute('aria-expanded', String(abrindo));
+        labelVerTudo.textContent = abrindo
+          ? 'Mostrar menos produtos'
+          : 'Ver todos os ' + TOTAL_VITRINE + ' produtos em estoque';
+        if(abrindo){
+          vitrineCompleta.scrollIntoView({ behavior: semAnimacao ? 'auto' : 'smooth', block: 'start' });
+        }
+      });
+    }
+
+    /* --- lightbox --- */
+    function abreLightbox(n, gatilho){
+      indiceAberto = n;
+      gatilhoFoco = gatilho || null;
+      var p = mapaProdutos[n];
+      lightboxImg.src = 'vitrine/' + n + '.jpg';
+      lightboxImg.alt = p ? (p.nome + ' — ' + p.categoria) : ('Produto ' + n + ' disponível na loja VileTech Informática');
+      lightboxLegenda.innerHTML = p
+        ? ('<strong>' + p.nome + '</strong>' + p.categoria)
+        : ('<strong>Produto #' + n + '</strong>' + n + ' de ' + TOTAL_VITRINE + ' fotos em estoque');
+      var msg = p
+        ? ('Olá! Vi o ' + p.nome + ' na vitrine do site, ainda está disponível?')
+        : ('Olá! Vi o produto #' + n + ' na vitrine do site, ainda está disponível?');
+      lightboxZap.setAttribute('href','https://wa.me/' + NUMERO_WHATSAPP + '?text=' + encodeURIComponent(msg));
+      lightbox.hidden = false;
+      document.body.style.overflow = 'hidden';
+      btnFechar.focus();
+    }
+
+    function fechaLightbox(){
+      lightbox.hidden = true;
+      document.body.style.overflow = '';
+      indiceAberto = -1;
+      if(gatilhoFoco) gatilhoFoco.focus();
+    }
+
+    function navega(passo){
+      var proximo = indiceAberto + passo;
+      if(proximo < 1) proximo = TOTAL_VITRINE;
+      if(proximo > TOTAL_VITRINE) proximo = 1;
+      abreLightbox(proximo, gatilhoFoco);
+    }
+
+    btnFechar.addEventListener('click', fechaLightbox);
+    btnAnterior.addEventListener('click', function(){ navega(-1); });
+    btnProximo.addEventListener('click', function(){ navega(1); });
+
+    lightbox.addEventListener('click', function(e){
+      if(e.target === lightbox) fechaLightbox();
+    });
+
+    document.addEventListener('keydown', function(e){
+      if(lightbox.hidden) return;
+      if(e.key === 'Escape') fechaLightbox();
+      if(e.key === 'ArrowLeft') navega(-1);
+      if(e.key === 'ArrowRight') navega(1);
+    });
+  }
 })();
 </script>
 
