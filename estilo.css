@@ -132,7 +132,7 @@ ul,ol{list-style:none}
 .marca-txt strong{font-family:var(--fonte-titulo);font-weight:800;font-size:21px;letter-spacing:-.02em;display:block;line-height:1.1;text-transform:uppercase}
 .marca-vile{color:var(--azul-sinal)}
 .marca-tech{color:var(--vermelho-vile)}
-.marca-txt span{font-family:var(--fonte-titulo);font-weight:500;font-size:10.5px;color:var(--grafite);letter-spacing:.18em;text-transform:uppercase}
+.marca-txt>span{font-family:var(--fonte-titulo);font-weight:500;font-size:10.5px;color:var(--grafite);letter-spacing:.18em;text-transform:uppercase}
 .menu{display:flex;gap:2px;align-items:center}
 .menu a{
   font-size:14.5px;font-weight:500;color:var(--grafite);text-decoration:none;
