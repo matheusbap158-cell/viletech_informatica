@@ -963,6 +963,18 @@
   var semAnimacao = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ======================================================================
+     0. VÍDEO DE FUNDO DO HERO — alguns navegadores só respeitam o
+        autoplay depois de garantir "muted" via JS, não só pelo atributo.
+     ====================================================================== */
+  var heroVideo = document.querySelector('.hero-video');
+  if(heroVideo && !semAnimacao){
+    heroVideo.muted = true;
+    var tentaTocar = function(){ heroVideo.play().catch(function(){}); };
+    tentaTocar();
+    document.addEventListener('click', tentaTocar, { once: true });
+  }
+
+  /* ======================================================================
      2. MENU MOBILE
      ====================================================================== */
   var abreMenu = document.getElementById('abreMenu');
