@@ -238,7 +238,7 @@
           <img src="vitrine/1.jpg" alt="" loading="eager" decoding="async" width="120" height="120">
           <img src="vitrine/65.jpg" alt="" loading="eager" decoding="async" width="120" height="120">
           <img src="vitrine/89.jpg" alt="" loading="eager" decoding="async" width="120" height="120">
-          <span class="hero-vitrine-badge"><strong>145</strong>produtos em estoque</span>
+          <span class="hero-vitrine-badge"><strong>Centenas</strong>de produtos em estoque</span>
         </a>
       </div>
     </div>
@@ -259,7 +259,7 @@
 
       <div class="vitrine-mais revela">
         <a class="btn btn-s" href="catalogo.html">
-          Ver todos os <span id="totalVitrineTexto">145</span> produtos em estoque
+          Ver todos os produtos em estoque
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
@@ -318,7 +318,7 @@
         </li>
         <li class="revela" data-atraso="3">
           <span class="ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" focusable="false"><path d="M3 10l9-6 9 6v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-7h6v7"/></svg></span>
-          <strong><span id="confiancaTotalProdutos">145</span> produtos em estoque</strong><span>Não é só assistência — é loja de verdade</span>
+          <strong>Centenas de produtos em estoque</strong><span>Não é só assistência — é loja de verdade</span>
         </li>
       </ul>
     </div>
@@ -1150,12 +1150,6 @@
     { n: 117, nome: 'Logitech K120',               categoria: 'Teclado com fio' },
     { n: 131, nome: 'Intelbras Pleno',              categoria: 'Telefone com fio' }
   ];
-
-  var totalTexto = document.getElementById('totalVitrineTexto');
-  if(totalTexto && typeof TOTAL_PRODUTOS !== 'undefined') totalTexto.textContent = TOTAL_PRODUTOS;
-
-  var totalConfianca = document.getElementById('confiancaTotalProdutos');
-  if(totalConfianca && typeof TOTAL_PRODUTOS !== 'undefined') totalConfianca.textContent = TOTAL_PRODUTOS;
 
   var produtosDestaque = document.getElementById('produtosDestaque');
 
