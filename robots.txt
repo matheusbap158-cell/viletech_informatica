@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://viletechinformatica.com.br/sitemap.xml

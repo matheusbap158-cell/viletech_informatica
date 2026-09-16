@@ -57,7 +57,7 @@ body{
 h1,h2,h3,h4{font-family:var(--fonte-titulo);line-height:1.15;letter-spacing:-.015em}
 img{max-width:100%;display:block}
 a{color:var(--azul-sinal)}
-ul{list-style:none}
+ul,ol{list-style:none}
 
 .container{max-width:var(--container);margin:0 auto;padding:0 24px}
 .secao{padding:var(--e9) 0}
@@ -131,10 +131,10 @@ ul{list-style:none}
 .marca-logo{width:40px;height:40px;object-fit:contain;flex-shrink:0}
 .marca-txt strong{font-family:var(--fonte-titulo);font-weight:800;font-size:18px;letter-spacing:-.02em;display:block;line-height:1.1}
 .marca-txt span{font-size:11px;color:var(--grafite);letter-spacing:.18em;text-transform:uppercase}
-.menu{display:flex;gap:var(--e2);align-items:center}
+.menu{display:flex;gap:2px;align-items:center}
 .menu a{
   font-size:14.5px;font-weight:500;color:var(--grafite);text-decoration:none;
-  padding:10px 12px;border-radius:8px;transition:var(--transicao);
+  padding:10px 6px;border-radius:8px;transition:var(--transicao);white-space:nowrap;
   min-height:44px;display:inline-flex;align-items:center;
 }
 .menu a:hover{color:var(--azul-placa);background:var(--cinza-antiestatico)}
@@ -157,7 +157,7 @@ ul{list-style:none}
   background:radial-gradient(circle,rgba(15,107,212,.45),transparent 68%);pointer-events:none;
 }
 .hero-grade{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:var(--e8);align-items:center}
-.hero h1{font-size:var(--t-h1);font-weight:800;letter-spacing:-.025em;max-width:14ch}
+.hero h1{font-size:var(--t-h1);font-weight:800;letter-spacing:-.025em;max-width:24ch}
 .hero h1 span{display:block;color:#FF6B70}
 .hero .lead{margin-top:var(--e4);max-width:52ch;color:#C3D3E4}
 .hero .linha-btn{margin-top:var(--e6)}
@@ -509,6 +509,14 @@ ul{list-style:none}
   .duas-colunas{grid-template-columns:1fr;gap:var(--e7)}
   .rodape-grade{grid-template-columns:1fr 1fr;gap:var(--e6)}
   .topo-endereco{display:none}
+  .abre-menu{display:flex}
+  .menu{
+    display:none;position:absolute;left:0;right:0;top:100%;
+    flex-direction:column;align-items:stretch;gap:2px;background:#fff;
+    border-bottom:1px solid var(--borda);padding:8px 16px 16px;box-shadow:var(--s2);
+  }
+  .menu.aberto{display:flex}
+  .menu a{min-height:48px;font-size:16px;padding:12px}
   .fluxo{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));row-gap:var(--e6)}
   .fluxo::before{display:none}
 }
@@ -521,15 +529,7 @@ ul{list-style:none}
   body{padding-bottom:76px}
 
   .topo-in{padding:10px 16px;gap:var(--e3)}
-  .abre-menu{display:flex}
   .topo-contato .btn-mini{display:none}
-  .menu{
-    display:none;position:absolute;left:0;right:0;top:100%;
-    flex-direction:column;align-items:stretch;gap:2px;background:#fff;
-    border-bottom:1px solid var(--borda);padding:8px 16px 16px;box-shadow:var(--s2);
-  }
-  .menu.aberto{display:flex}
-  .menu a{min-height:48px;font-size:16px;padding:12px}
 
   .hero{padding:var(--e8) 0 var(--e7)}
   .hero h1{max-width:none}

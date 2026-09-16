@@ -13,14 +13,18 @@ Objetivo único da página: provar competência técnica e levar o visitante ao 
 |---|---|
 | `index.html` | A Home — hero, produtos em destaque, serviços, avaliações, loja, contato |
 | `catalogo.html` | Catálogo completo: todos os produtos reais, com busca e filtro por categoria |
-| `estilo.css` | CSS compartilhado entre `index.html` e `catalogo.html` (tokens, componentes, cards) |
+| `sobre/index.html` | Página institucional "Sobre" (`/sobre/`) — endereço, horário, diferencial e avaliações |
+| `estilo.css` | CSS compartilhado entre todas as páginas (tokens, componentes, cards) |
 | `dados-produtos.js` | Fonte única dos produtos (nome/categoria/marca reais) e do número do WhatsApp |
-| `vitrine/` | As fotos dos produtos (`vitrine/<n>.jpg`), usadas pelas duas páginas |
+| `vitrine/` | As fotos dos produtos (`vitrine/<n>.jpg`), usadas pelas páginas |
+| `sitemap.xml` / `robots.txt` | SEO técnico básico — URLs reais do site e liberação de indexação |
 | `design-system-viletech.html` | Design system de origem (tokens, componentes, regras de uso) |
 | `Info maps.txt` | Dados e avaliações do perfil da loja no Google |
 | `bio insta.txt` | Bio do Instagram (lista de serviços) |
 | `fotos/` | Fotos reais da loja (ver abaixo) |
 | `Logo/` | Arquivos de logo da marca |
+
+Todas as páginas usam `https://viletechinformatica.com.br/` como domínio canônico (tag `<link rel="canonical">`). Se o domínio final for outro, atualize o `href` desse link e as URLs em `sitemap.xml`/`robots.txt` antes de publicar.
 
 Basta abrir `index.html` no navegador. Não há build, bundler nem instalação — só HTML, CSS e JS puros, em arquivos separados por responsabilidade em vez de tudo num único arquivo.
 
