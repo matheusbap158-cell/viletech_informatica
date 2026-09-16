@@ -152,6 +152,14 @@ ul,ol{list-style:none}
   background:linear-gradient(160deg,var(--azul-placa),var(--azul-fumaca));
   color:#fff;position:relative;overflow:hidden;padding:var(--e9) 0 var(--e8);
 }
+.hero-video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(11,34,57,.88),rgba(18,58,95,.82));
+  pointer-events:none;
+}
 .hero::after{
   content:"";position:absolute;right:-120px;top:-120px;width:520px;height:520px;
   background:radial-gradient(circle,rgba(15,107,212,.45),transparent 68%);pointer-events:none;
@@ -572,4 +580,5 @@ ul,ol{list-style:none}
   .js .barra-preench{width:var(--w,0%)}
   .js .fluxo::before{transform:scaleX(1)}
   .traco-anima{stroke-dashoffset:0}
+  .hero-video{display:none}
 }
