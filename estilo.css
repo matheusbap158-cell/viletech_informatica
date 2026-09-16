@@ -129,7 +129,9 @@ ul,ol{list-style:none}
 .marca{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;margin-right:auto}
 .marca:focus-visible{outline:3px solid var(--azul-sinal);outline-offset:4px;border-radius:6px}
 .marca-logo{width:68px;height:40px;object-fit:contain;flex-shrink:0}
-.marca-txt strong{font-family:var(--fonte-titulo);font-weight:800;font-size:18px;letter-spacing:-.02em;display:block;line-height:1.1}
+.marca-txt strong{font-family:var(--fonte-titulo);font-weight:800;font-size:18px;letter-spacing:-.02em;display:block;line-height:1.1;text-transform:uppercase}
+.marca-vile{color:var(--azul-sinal)}
+.marca-tech{color:var(--vermelho-vile)}
 .marca-txt span{font-size:11px;color:var(--grafite);letter-spacing:.18em;text-transform:uppercase}
 .menu{display:flex;gap:2px;align-items:center}
 .menu a{
